@@ -24,3 +24,6 @@ hs_err_pid*
 
 # Lib Folder
 lib/
+
+# Target Folder
+target/
