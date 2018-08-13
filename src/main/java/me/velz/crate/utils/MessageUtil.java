@@ -39,8 +39,4 @@ public enum MessageUtil {
         }
     }
 
-    public static void save(MessageUtil m) {
-        FileBuilder message = new FileBuilder("plugins/Crates", "messages.yml");
-    }
-
 }
