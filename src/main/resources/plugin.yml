@@ -1,0 +1,8 @@
+name: Crates
+author: Kevin Velz
+version: 1.0
+main: me.velz.crate.Crates
+commands:
+    crate:
+        aliases: [crates]
+        description: Crate Command
