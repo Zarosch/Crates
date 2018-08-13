@@ -30,11 +30,6 @@ public class Crates extends JavaPlugin {
         fileManager.load();
     }
 
-    @Override
-    public void onDisable() {
-
-    }
-
     public boolean inventoryContains(Inventory inventory, ItemStack item) {
         int count = 0;
         ItemStack[] items = inventory.getContents();
