@@ -6,20 +6,20 @@ public enum MessageUtil {
 
     PREFIX("§f[§eCrates§f] "),
     
-    ERROR_NOPERMISSIONS("§cDazu hast du keine Berechtigung."),
-    ERROR_PLAYERNOTFOUND("§cDieser Spieler konnte nicht gefunden werden."),
-    ERROR_NONUMBER("§cDu musst eine gültige Zahl angeben."),
-    ERROR_SYNTAX("§cSyntax Fehler, bitte nutze: %command"),
-    ERROR_CRATENOTFOUND("§cDiese Crate konnte nicht gefunden werden."),
+    ERROR_NOPERMISSIONS("§cYou dont have permissions."),
+    ERROR_PLAYERNOTFOUND("§cThis player can not be found."),
+    ERROR_NONUMBER("§cPlease enter a valid number."),
+    ERROR_SYNTAX("§cSyntax error, please use: %command"),
+    ERROR_CRATENOTFOUND("§cThis crate can not be found."),
     
-    ITEMWON("§aDu hast §f§o%win §agewonnen."),
+    ITEMWON("§aYou have §f§o%win §awon."),
     
-    COMMAND_HELP_RELOAD("§6/crates reload §fKonfiguration neuladen"),
-    COMMAND_HELP_GIVE("§6/crates give <Crate> [Spieler] §fCrate geben"),
-    COMMAND_HELP_LIST("§6/crates list §fCrate geben"),
-    COMMAND_RELOADED("§aKonfiguration wurde neugeladen."),
-    COMMAND_GIVE("§aDu hast §f§o%player §adie Crate §f§o%crate §agegeben."),
-    COMMAND_LIST("§6Alle Crates: %crates");
+    COMMAND_HELP_RELOAD("§6/crates reload §fReload Configuration"),
+    COMMAND_HELP_GIVE("§6/crates give <Crate> [Spieler] §fGives you a crate"),
+    COMMAND_HELP_LIST("§6/crates list §fList of all crates."),
+    COMMAND_RELOADED("§aConfiguration reloaded."),
+    COMMAND_GIVE("§aYou have give §f§o%player §athe crate §f§o%crate§a."),
+    COMMAND_LIST("§6All crates: %crates");
 
     @Getter
     private String local;
