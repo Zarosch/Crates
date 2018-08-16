@@ -25,7 +25,7 @@ public class FileManager {
         if(!getCratesBuilder().getConfiguration().contains("crates")) {
             this.getCratesBuilder().addDefault("crates.epic.name", "Epic Crate");
             ArrayList<String> lore = new ArrayList<>();
-            lore.add("§7Beschreibung hier einfügen");
+            lore.add("§7Lore..");
             this.getCratesBuilder().addDefault("crates.epic.item", new ItemBuilder().setMaterial(Material.DRAGON_EGG).setDisplayName("§d§lEpic Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
             this.getCratesBuilder().addDefault("crates.epic.content.egg.name", "1x Egg");
             this.getCratesBuilder().addDefault("crates.epic.content.egg.item", new ItemBuilder().setMaterial(Material.EGG).setDisplayName("Egg").build());
