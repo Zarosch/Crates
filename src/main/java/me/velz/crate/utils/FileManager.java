@@ -27,13 +27,13 @@ public class FileManager {
             ArrayList<String> lore = new ArrayList<>();
             lore.add("§7Beschreibung hier einfügen");
             this.getCratesBuilder().addDefault("crates.epic.item", new ItemBuilder().setMaterial(Material.DRAGON_EGG).setDisplayName("§d§lEpic Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
-            this.getCratesBuilder().addDefault("crates.epic.content.ei.name", "1x Hühner Ei");
-            this.getCratesBuilder().addDefault("crates.epic.content.ei.item", new ItemBuilder().setMaterial(Material.EGG).setDisplayName("Hühner Ei").build());
-            this.getCratesBuilder().addDefault("crates.epic.content.ei.commands", new String[]{
+            this.getCratesBuilder().addDefault("crates.epic.content.egg.name", "1x Egg");
+            this.getCratesBuilder().addDefault("crates.epic.content.egg.item", new ItemBuilder().setMaterial(Material.EGG).setDisplayName("Egg").build());
+            this.getCratesBuilder().addDefault("crates.epic.content.egg.commands", new String[]{
                 "give %player minecraft:egg 1"
             });
-            this.getCratesBuilder().addDefault("crates.epic.content.melon.name", "1x Stück Melone");
-            this.getCratesBuilder().addDefault("crates.epic.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("Stück Melone").build());
+            this.getCratesBuilder().addDefault("crates.epic.content.melon.name", "1x Piece of melone");
+            this.getCratesBuilder().addDefault("crates.epic.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("Piece of melone").build());
             this.getCratesBuilder().addDefault("crates.epic.content.melon.commands", new String[]{
                 "give %player minecraft:melon 1"
             });
