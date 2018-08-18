@@ -10,19 +10,26 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 public class FileManager {
-    
+
     private final Crates plugin;
 
     public FileManager(Crates plugin) {
         this.plugin = plugin;
     }
-    
+
     @Getter
     private final FileBuilder cratesBuilder = new FileBuilder("plugins/Crates/", "crates.yml");
+
+    @Getter
+    private final FileBuilder configBuilder = new FileBuilder("plugins/Crates/", "config.yml");
     
+    @Getter
+    private boolean animation;
     
     public void setDefaults() {
-        if(!getCratesBuilder().getConfiguration().contains("crates")) {
+        this.getConfigBuilder().addDefault("options.animation", true);
+        this.getConfigBuilder().save();
+        if (!getCratesBuilder().getConfiguration().contains("crates")) {
             this.getCratesBuilder().addDefault("crates.epic.name", "Epic Crate");
             ArrayList<String> lore = new ArrayList<>();
             lore.add("§7Lore..");
@@ -40,18 +47,21 @@ public class FileManager {
         }
         this.getCratesBuilder().save();
     }
-    
+
     public void load() {
+        this.getConfigBuilder().load();
+        this.getCratesBuilder().load();
+        this.animation = this.getConfigBuilder().getBoolean("options.animation");
         plugin.getCrates().clear();
-        for(String crates : getCratesBuilder().getConfiguration().getConfigurationSection("crates").getKeys(false)) {
+        for (String crates : getCratesBuilder().getConfiguration().getConfigurationSection("crates").getKeys(false)) {
             String name = getCratesBuilder().getString("crates." + crates + ".name");
             ItemStack item = getCratesBuilder().getItemStack("crates." + crates + ".item");
             ArrayList<CrateItem> items = new ArrayList<>();
-            for(String content : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content").getKeys(false)) {
+            for (String content : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content").getKeys(false)) {
                 String contentName = getCratesBuilder().getString("crates." + crates + ".content." + content + ".name");
                 ItemStack contentItem = getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".item");
                 ArrayList<String> commands = new ArrayList<>();
-                for(String command : getCratesBuilder().getStringList("crates." + crates + ".content." + content + ".commands")) {
+                for (String command : getCratesBuilder().getStringList("crates." + crates + ".content." + content + ".commands")) {
                     commands.add(command);
                 }
                 CrateItem crateItem = new CrateItem(contentName, contentItem, commands);
