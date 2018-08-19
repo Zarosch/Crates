@@ -29,6 +29,9 @@ public class PlayerInteractListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if(event.getItem() == null) return;
+            if(event.getItem().getItemMeta() == null) return;
+            if(event.getItem().getItemMeta().getDisplayName() == null) return;
             for (Crate crate : plugin.getCrates().values()) {
                 if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(crate.getItem().getItemMeta().getDisplayName())) {
                     event.setCancelled(true);
