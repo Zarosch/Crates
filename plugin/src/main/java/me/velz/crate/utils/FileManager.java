@@ -26,7 +26,11 @@ public class FileManager {
     @Getter
     private boolean animation;
     
+    @Getter
+    private String language;
+    
     public void setDefaults() {
+        this.getConfigBuilder().addDefault("language", "en");
         this.getConfigBuilder().addDefault("options.animation", true);
         this.getConfigBuilder().save();
         if (!getCratesBuilder().getConfiguration().contains("crates")) {
@@ -51,6 +55,7 @@ public class FileManager {
     public void load() {
         this.getConfigBuilder().load();
         this.getCratesBuilder().load();
+        this.language = this.getConfigBuilder().getString("language");
         this.animation = this.getConfigBuilder().getBoolean("options.animation");
         plugin.getCrates().clear();
         for (String crates : getCratesBuilder().getConfiguration().getConfigurationSection("crates").getKeys(false)) {
