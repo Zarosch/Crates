@@ -17,7 +17,7 @@ public enum MessageUtil {
     COMMAND_HELP_LIST("", "§6/crates list §fList of all crates.", "§6/crates list §fListe aller Crates"),
     COMMAND_RELOADED("", "§aConfiguration reloaded.", "§aKonfiguration neugeladen"),
     COMMAND_GIVE("", "§aYou have give §f§o%player §athe crate §f§o%crate§a.", "§aDu hast §f§o%player §adie Crate §f§o%crate§a gegeben."),
-    COMMAND_LIST("", "§6All crates:§e %crates", "§6Alle verfübaren Crates:§e %crates");
+    COMMAND_LIST("", "§6All crates:§e %crates", "§6Alle verfügbaren Crates:§e %crates");
 
     @Getter
     private String local;
