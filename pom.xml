@@ -2,23 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.velz</groupId>
-    <artifactId>Crate</artifactId>
+    <artifactId>Crate-modules</artifactId>
     <version>1.2</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     
+    <modules>
+        <module>abstraction</module>
+        <module>1_8_R3</module>
+        <module>1_12_R1</module>
+        <module>plugin</module>
+        <module>1_13_R1</module>
+        <module>1_13_R2</module>
+    </modules>
+    
     <dependencies>
-        <dependency>
-            <artifactId>org.spigotmc</artifactId>
-            <groupId>spigot</groupId>
-            <version>1.12</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.12.2.jar</systemPath>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

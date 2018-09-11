@@ -1,0 +1,9 @@
+name: Crates
+author: Kevin Velz
+version: 1.0
+main: me.velz.crate.Crates
+
+commands:
+    crate:
+        description: Crate Befehl
+        usage: /<command>

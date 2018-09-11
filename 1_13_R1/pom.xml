@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>me.velz</groupId>
+        <artifactId>Crate-modules</artifactId>
+        <version>1.2</version>
+    </parent>
+    <artifactId>Crate-1_13_R1</artifactId>
+    <packaging>jar</packaging>
+    
+    <dependencies>
+        <dependency>
+            <artifactId>org.spigotmc</artifactId>
+            <groupId>spigot</groupId>
+            <version>1.13</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.13.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>me.velz</groupId>
+            <artifactId>Crate-abstraction</artifactId>
+            <version>1.2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    
+</project>
