@@ -11,11 +11,10 @@
     
     <dependencies>
         <dependency>
-            <artifactId>org.spigotmc</artifactId>
-            <groupId>spigot</groupId>
-            <version>1.13</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.13.1.jar</systemPath>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1_13_R2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>me.velz</groupId>
