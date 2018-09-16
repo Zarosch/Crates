@@ -16,11 +16,15 @@ public class CrateItem {
     
     @Getter
     private final ArrayList<String> commands;
+    
+    @Getter
+    private final ArrayList<ItemStack> items;
 
-    public CrateItem(String name, ItemStack item, ArrayList<String> commands) {
+    public CrateItem(String name, ItemStack item, ArrayList<String> commands, ArrayList<ItemStack> items) {
         this.name = name;
         this.item = item;
         this.commands = commands;
+        this.items = items;
     }
     
     public void runCommands(Player player) {

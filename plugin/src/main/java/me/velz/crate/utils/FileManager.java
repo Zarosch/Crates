@@ -22,13 +22,13 @@ public class FileManager {
 
     @Getter
     private final FileBuilder configBuilder = new FileBuilder("plugins/Crates/", "config.yml");
-    
+
     @Getter
     private boolean animation;
-    
+
     @Getter
     private String language;
-    
+
     public void setDefaults() {
         this.getConfigBuilder().addDefault("language", "en");
         this.getConfigBuilder().addDefault("options.animation", true);
@@ -45,6 +45,7 @@ public class FileManager {
             });
             this.getCratesBuilder().addDefault("crates.epic.content.melon.name", "1x Piece of melone");
             this.getCratesBuilder().addDefault("crates.epic.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("Piece of melone").build());
+            this.getCratesBuilder().addDefault("crates.epic.content.melon.items.melon", new ItemBuilder().setMaterial(Material.MELON).build());
             this.getCratesBuilder().addDefault("crates.epic.content.melon.commands", new String[]{
                 "give %player minecraft:melon 1"
             });
@@ -66,10 +67,18 @@ public class FileManager {
                 String contentName = getCratesBuilder().getString("crates." + crates + ".content." + content + ".name");
                 ItemStack contentItem = getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".item");
                 ArrayList<String> commands = new ArrayList<>();
-                for (String command : getCratesBuilder().getStringList("crates." + crates + ".content." + content + ".commands")) {
-                    commands.add(command);
+                if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".commands")) {
+                    for (String command : getCratesBuilder().getStringList("crates." + crates + ".content." + content + ".commands")) {
+                        commands.add(command);
+                    }
                 }
-                CrateItem crateItem = new CrateItem(contentName, contentItem, commands);
+                ArrayList<ItemStack> i = new ArrayList<>();
+                if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".items")) {
+                    for (String crateItems : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content." + content + ".items").getKeys(false)) {
+                        i.add(getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".items." + crateItems));
+                    }
+                }
+                CrateItem crateItem = new CrateItem(contentName, contentItem, commands, i);
                 items.add(crateItem);
             }
             Crate crate = new Crate(name, item, items);
