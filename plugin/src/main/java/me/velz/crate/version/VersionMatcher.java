@@ -15,14 +15,15 @@ public class VersionMatcher {
             Version_1_8_R3.class,
             Version_1_12_R1.class,
             Version_1_13_R1.class,
-            Version_1_13_R2.class
+            Version_1_13_R2.class,
+            Version_1_14_R1.class
     );
     
     public Version match() {
         try {
             return versions.stream()
                     .filter(version -> version.getSimpleName().substring(8).equals(serverVersion))
-                    .findFirst().orElseThrow(() -> new RuntimeException("Your server version isn't supported in Facility! (" + serverVersion +")"))
+                    .findFirst().orElseThrow(() -> new RuntimeException("Your server version isn't supported in Crates! (" + serverVersion +")"))
                     .newInstance();
         } catch (IllegalAccessException | InstantiationException ex) {
             throw new RuntimeException(ex); 

@@ -21,7 +21,7 @@ public enum MessageUtil {
 
     @Getter
     private String local;
-    
+
     @Getter
     private final String english, german;
 
@@ -34,13 +34,19 @@ public enum MessageUtil {
     public static void load() {
         FileBuilder message_en = new FileBuilder("plugins/Crates", "messages_en.yml");
         for (MessageUtil m : MessageUtil.values()) {
-            message_en.addDefault("message." + m.toString().replaceAll("_", ".").toLowerCase(), m.local.replaceAll("§", "&"));
+            message_en.addDefault("message." + m.toString().replaceAll("_", ".").toLowerCase(), m.english.replaceAll("§", "&"));
         }
         message_en.save();
-        
+
+        FileBuilder message_de = new FileBuilder("plugins/Crates", "messages_de.yml");
+        for (MessageUtil m : MessageUtil.values()) {
+            message_de.addDefault("message." + m.toString().replaceAll("_", ".").toLowerCase(), m.german.replaceAll("§", "&"));
+        }
+        message_de.save();
+
         FileBuilder message = new FileBuilder("plugins/Crates", "messages_" + Crates.getPlugin().getFileManager().getLanguage() + ".yml");
         if (!message.getFile().exists()) {
-            message = new FileBuilder("plugins/Crates", "messages_en.yml");
+            message = new FileBuilder("plugins/Crates", "messages_" + Crates.getPlugin().getFileManager().getLanguage() + ".yml");
         }
         for (MessageUtil m : MessageUtil.values()) {
             m.local = message.getConfiguration().getString("message." + m.toString().replaceAll("_", ".").toLowerCase()).replaceAll("&", "§");

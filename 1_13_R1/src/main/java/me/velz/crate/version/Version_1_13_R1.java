@@ -1,6 +1,8 @@
 package me.velz.crate.version;
 
+import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -28,6 +30,16 @@ public class Version_1_13_R1 implements Version {
             return null;
         }
         return skullMeta.getOwningPlayer().getName();
+    }
+
+    @Override
+    public String getInventoryName(InventoryClickEvent event) {
+        return event.getInventory().getTitle();
+    }
+
+    @Override
+    public Material getSkullItem() {
+        return Material.PLAYER_HEAD;
     }
 
 }

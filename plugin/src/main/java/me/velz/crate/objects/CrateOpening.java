@@ -3,12 +3,13 @@ package me.velz.crate.objects;
 import java.util.Random;
 import me.velz.crate.Crates;
 import me.velz.crate.utils.MessageUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.scheduler.BukkitTask;
 
-public class CrateOpening implements Runnable{
-    
+public class CrateOpening implements Runnable {
+
     private final Crates plugin;
     private final Player player;
     private final Inventory inventory;
@@ -22,7 +23,7 @@ public class CrateOpening implements Runnable{
         this.player = player;
         this.inventory = inventory;
         this.crate = crate;
-        
+
         this.bukkitTask = this.plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, this, 4L, 4L);
     }
 
@@ -30,25 +31,27 @@ public class CrateOpening implements Runnable{
     public void run() {
         Random random = new Random();
         CrateItem nextCrateItem = crate.getCrateItems().get(random.nextInt(crate.getCrateItems().size()));
-        
-        for(int i = 10; i != 18; i++) {
-            if(inventory.getItem(i) != null) {
-                inventory.setItem(i-1, inventory.getItem(i));
+
+        for (int i = 10; i != 18; i++) {
+            if (inventory.getItem(i) != null) {
+                inventory.setItem(i - 1, inventory.getItem(i));
             }
         }
-        
+
         inventory.setItem(17, nextCrateItem.getItem());
         player.playSound(player.getLocation(), plugin.getVersion().getSound("UI_BUTTON_CLICK"), 10L, 10L);
         count++;
-        if(count == 25) {
+        if (count == 25) {
             this.win = nextCrateItem;
         }
-        if(count == 30) {
+        if (count == 30) {
             bukkitTask.cancel();
-            win.runCommands(player);
+            Bukkit.getScheduler().runTask(Crates.getPlugin(), () -> {
+                win.runCommands(player);
+            });
             player.playSound(player.getLocation(), plugin.getVersion().getSound("ENTITY_PLAYER_LEVELUP"), 10L, 10L);
             player.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ITEMWON.getLocal().replaceAll("%win", win.getName()));
         }
     }
-    
+
 }

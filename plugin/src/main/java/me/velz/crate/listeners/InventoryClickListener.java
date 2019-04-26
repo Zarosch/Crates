@@ -21,9 +21,9 @@ public class InventoryClickListener implements Listener {
         Player player = (Player) event.getWhoClicked();
         Inventory inventory = event.getView().getTopInventory();
         if(inventory == null) return;
-        if(inventory.getTitle()== null) return;
+        if(plugin.getVersion().getInventoryName(event) == null) return;
         for(Crate crate : plugin.getCrates().values()) {
-            if(event.getInventory().getTitle().equalsIgnoreCase(crate.getName())) {
+            if(plugin.getVersion().getInventoryName(event).equalsIgnoreCase(crate.getName())) {
                 event.setCancelled(true);
             }
         }

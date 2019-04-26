@@ -13,8 +13,9 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1_8_R3</version>
-            <scope>provided</scope>
+            <version>1_14_R1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.14.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>me.velz</groupId>
@@ -43,6 +44,12 @@
         <dependency>
             <groupId>me.velz</groupId>
             <artifactId>Crate-1_13_R2</artifactId>
+            <version>1.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.velz</groupId>
+            <artifactId>Crate-1_14_R1</artifactId>
             <version>1.2</version>
             <scope>compile</scope>
         </dependency>

@@ -3,6 +3,7 @@ package me.velz.crate.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import me.velz.crate.Crates;
 import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Color;
@@ -70,7 +71,7 @@ public class ItemBuilder {
             lore = is.getItemMeta().getLore();
         }
         material = is.getType();
-        if (material == Material.SKULL_ITEM) {
+        if (material == Crates.getPlugin().getVersion().getSkullItem()) {
             SkullMeta sm = (SkullMeta) is.getItemMeta();
             if (sm.getOwner() != null) {
                 owner = sm.getOwner();

@@ -6,7 +6,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-public class Version_1_13_R2 implements Version {
+public class Version_1_14_R1 implements Version {
 
     @Override
     public Sound getSound(String sound) {
@@ -34,7 +34,7 @@ public class Version_1_13_R2 implements Version {
 
     @Override
     public String getInventoryName(InventoryClickEvent event) {
-        return event.getInventory().getTitle();
+        return event.getView().getTitle();
     }
 
     @Override

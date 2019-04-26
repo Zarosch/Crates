@@ -35,7 +35,7 @@ public class Crates extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         version = versionMatcher.match();
-        getCommand("crates").setExecutor(new CratesCommand(this));
+        getCommand("crate").setExecutor(new CratesCommand(this));
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(this), this);
 
