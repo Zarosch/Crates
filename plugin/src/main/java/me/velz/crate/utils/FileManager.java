@@ -39,11 +39,13 @@ public class FileManager {
             lore.add("§7Lore..");
             this.getCratesBuilder().addDefault("crates.epic.item", new ItemBuilder().setMaterial(Material.DRAGON_EGG).setDisplayName("§d§lEpic Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
             this.getCratesBuilder().addDefault("crates.epic.content.egg.name", "1x Egg");
+            this.getCratesBuilder().addDefault("crates.epic.content.egg.chance", 10);
             this.getCratesBuilder().addDefault("crates.epic.content.egg.item", new ItemBuilder().setMaterial(Material.EGG).setDisplayName("Egg").build());
             this.getCratesBuilder().addDefault("crates.epic.content.egg.commands", new String[]{
                 "give %player minecraft:egg 1"
             });
             this.getCratesBuilder().addDefault("crates.epic.content.melon.name", "1x Piece of melone");
+            this.getCratesBuilder().addDefault("crates.epic.content.melon.chance", 30);
             this.getCratesBuilder().addDefault("crates.epic.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("Piece of melone").build());
             this.getCratesBuilder().addDefault("crates.epic.content.melon.items.melon", new ItemBuilder().setMaterial(Material.MELON).build());
             this.getCratesBuilder().addDefault("crates.epic.content.melon.commands", new String[]{
@@ -67,6 +69,13 @@ public class FileManager {
                 String contentName = getCratesBuilder().getString("crates." + crates + ".content." + content + ".name");
                 ItemStack contentItem = getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".item");
                 ArrayList<String> commands = new ArrayList<>();
+                int chance = 1;
+                if(!getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".chance")) {
+                    getCratesBuilder().addDefault("crates." + crates + ".content." + content + ".chance", 1);
+                    getCratesBuilder().save();
+                } else {
+                    chance = getCratesBuilder().getInt("crates." + crates + ".content." + content + ".chance");
+                }
                 if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".commands")) {
                     for (String command : getCratesBuilder().getStringList("crates." + crates + ".content." + content + ".commands")) {
                         commands.add(command);
@@ -79,7 +88,9 @@ public class FileManager {
                     }
                 }
                 CrateItem crateItem = new CrateItem(contentName, contentItem, commands, i);
-                items.add(crateItem);
+                for(int c = 0; c != chance; c++) {
+                    items.add(crateItem);
+                }
             }
             Crate crate = new Crate(name, item, items);
             plugin.getCrates().put(crates, crate);
