@@ -15,6 +15,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -185,6 +186,9 @@ public class FileBuilder {
             if (Crates.getPlugin().getVersion().isUnbreakable(stack)) {
                 this.configuration.set(path + ".meta.unbreakable", true);
             }
+            if(stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ENCHANTS)) {
+                this.configuration.set(path + ".meta.showenchant", false);
+            }
             LeatherArmorMeta armorMeta = (LeatherArmorMeta) stack.getItemMeta();
             if (armorMeta.getColor() != null) {
                 this.configuration.set(path + ".meta.armorColor", armorMeta.getColor().asRGB());
@@ -273,6 +277,9 @@ public class FileBuilder {
         }
         if (this.configuration.contains(path + ".meta.unbreakable")) {
             builder.setUnbreakable(this.configuration.getBoolean(path + ".meta.unbreakable"));
+        }
+        if (this.configuration.contains(path + ".meta.showenchant")) {
+            builder.setShowEnchant(this.configuration.getBoolean(path + ".meta.showenchant"));
         }
         if (this.configuration.contains(path + ".meta.armorColor")) {
             builder.setColor(this.configuration.getInt(path + ".meta.armorColor"));

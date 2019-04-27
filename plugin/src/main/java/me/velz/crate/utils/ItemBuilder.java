@@ -9,6 +9,7 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -25,7 +26,7 @@ public class ItemBuilder {
     private String owner;
     private final HashMap<Enchantment, Integer> safeEnchant = new HashMap<>();
     private final HashMap<Enchantment, Integer> unSafeEnchant = new HashMap<>();
-    private boolean unbreakable = false, soulbound = false;
+    private boolean unbreakable = false, soulbound = false, showenchant = true;
 
     //<editor-fold defaultstate="collapsed" desc="setMaterial">
     public ItemBuilder setMaterial(Material material) {
@@ -33,33 +34,33 @@ public class ItemBuilder {
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="setDurability">
     public ItemBuilder setDurability(short durability) {
         this.durability = durability;
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="setColor">
     public ItemBuilder setColor(Color color) {
         this.color = color;
         return this;
     }
-    
+
     public ItemBuilder setColor(Integer color) {
         this.color = Color.fromRGB(color);
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="setDisplayName">
     public ItemBuilder setDisplayName(String displayname) {
         this.displayname = ChatColor.translateAlternateColorCodes('&', displayname);
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="fromItemStack">
     public ItemBuilder fromItemStack(ItemStack is) {
         amount = is.getAmount();
@@ -86,7 +87,7 @@ public class ItemBuilder {
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="addEnchantment">
     public ItemBuilder addEnchantment(Enchantment enchant, int level, boolean save) {
         if (save) {
@@ -119,20 +120,27 @@ public class ItemBuilder {
     }
     //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="setShowEnchant">
+    public ItemBuilder setShowEnchant(boolean showenchant) {
+        this.showenchant = showenchant;
+        return this;
+    }
+    //</editor-fold>F
+    
     //<editor-fold defaultstate="collapsed" desc="setUnbreakable">
     public ItemBuilder setUnbreakable(boolean unbreakable) {
         this.unbreakable = unbreakable;
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="setSoulbound">
     public ItemBuilder setSoulbound(boolean soulbound) {
         this.soulbound = soulbound;
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="getPossibleEnchantments">
     public static List<Enchantment> getPossibleEnchantments(ItemStack stack) {
         List<Enchantment> possible = new ArrayList<>();
@@ -169,6 +177,9 @@ public class ItemBuilder {
         }
         if (unbreakable) {
             im.spigot().setUnbreakable(true);
+        }
+        if (!showenchant) {
+            im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
         is.setItemMeta(im);
         if (owner != null) {
