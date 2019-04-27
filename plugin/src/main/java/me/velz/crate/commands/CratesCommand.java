@@ -30,6 +30,7 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage(MessageUtil.COMMAND_HELP_RELOAD.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_GIVE.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_LIST.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDITEM.getLocal());
             cs.sendMessage("");
             return true;
         }
