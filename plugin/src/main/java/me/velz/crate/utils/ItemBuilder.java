@@ -125,7 +125,7 @@ public class ItemBuilder {
         this.showenchant = showenchant;
         return this;
     }
-    //</editor-fold>F
+    //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="setUnbreakable">
     public ItemBuilder setUnbreakable(boolean unbreakable) {

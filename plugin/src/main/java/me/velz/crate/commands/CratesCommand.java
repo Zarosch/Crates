@@ -66,7 +66,7 @@ public class CratesCommand implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase("give")) {
-            Player player = (Player) cs;
+            Player player = null;
 
             if (args.length != 3 && args.length != 2) {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate give [crate] [player]"));
@@ -79,6 +79,11 @@ public class CratesCommand implements CommandExecutor {
                     return true;
                 }
                 player = Bukkit.getPlayer(args[2]);
+            } else if (cs instanceof Player) {
+                player = (Player) cs;
+            } else {
+                cs.sendMessage("This command can only be used in the console with the player argument");
+                return true;
             }
 
             String crate = args[1];
