@@ -48,9 +48,6 @@ public class FileManager {
             this.getCratesBuilder().addDefault("crates.epic.content.melon.chance", 30);
             this.getCratesBuilder().addDefault("crates.epic.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("Piece of melone").build());
             this.getCratesBuilder().addDefault("crates.epic.content.melon.items.melon", new ItemBuilder().setMaterial(Material.MELON).build());
-            this.getCratesBuilder().addDefault("crates.epic.content.melon.commands", new String[]{
-                "give %player minecraft:melon 1"
-            });
         }
         this.getCratesBuilder().save();
     }
