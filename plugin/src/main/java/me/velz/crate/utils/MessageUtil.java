@@ -49,8 +49,12 @@ public enum MessageUtil {
             message = new FileBuilder("plugins/Crates", "messages_" + Crates.getPlugin().getFileManager().getLanguage() + ".yml");
         }
         for (MessageUtil m : MessageUtil.values()) {
+            message.addDefault("message." + m.toString().replaceAll("_", ".").toLowerCase(), m.english.replaceAll("§", "&"));
+        }
+        for (MessageUtil m : MessageUtil.values()) {
             m.local = message.getConfiguration().getString("message." + m.toString().replaceAll("_", ".").toLowerCase()).replaceAll("&", "§");
         }
+        message.save();
     }
 
 }
