@@ -41,7 +41,7 @@ public class CrateOpening implements Runnable {
         inventory.setItem(17, nextCrateItem.getItem());
         player.playSound(player.getLocation(), plugin.getVersion().getSound("UI_BUTTON_CLICK"), 10L, 10L);
         count++;
-        if (count == 25) {
+        if (count == 26) {
             this.win = nextCrateItem;
         }
         if (count == 30) {
