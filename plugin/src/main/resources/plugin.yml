@@ -2,6 +2,7 @@ name: Crates
 author: Kevin Velz
 version: 1.0
 main: me.velz.crate.Crates
+api-version: 1.13
 
 commands:
     crate:
