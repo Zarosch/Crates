@@ -6,6 +6,7 @@ import me.velz.crate.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitTask;
 
 public class CrateOpening implements Runnable {
@@ -25,6 +26,7 @@ public class CrateOpening implements Runnable {
         this.crate = crate;
 
         this.bukkitTask = this.plugin.getServer().getScheduler().runTaskTimerAsynchronously(plugin, this, 4L, 4L);
+        player.setMetadata("crate", new FixedMetadataValue(plugin, crate));
     }
 
     @Override
@@ -37,18 +39,25 @@ public class CrateOpening implements Runnable {
                 inventory.setItem(i - 1, inventory.getItem(i));
             }
         }
+        
+        if(!player.isOnline()) {
+            bukkitTask.cancel();
+        }
 
         inventory.setItem(17, nextCrateItem.getItem());
         player.playSound(player.getLocation(), plugin.getVersion().getSound("UI_BUTTON_CLICK"), 10L, 10L);
         count++;
         if (count == 26) {
             this.win = nextCrateItem;
+            player.setMetadata("cratewinning", new FixedMetadataValue(plugin, win));
         }
         if (count == 30) {
             bukkitTask.cancel();
             Bukkit.getScheduler().runTask(Crates.getPlugin(), () -> {
                 win.runCommands(player);
             });
+            player.removeMetadata("crate", plugin);
+            player.removeMetadata("cratewinning", plugin);
             player.playSound(player.getLocation(), plugin.getVersion().getSound("ENTITY_PLAYER_LEVELUP"), 10L, 10L);
             player.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ITEMWON.getLocal().replaceAll("%win", win.getName()));
         }
