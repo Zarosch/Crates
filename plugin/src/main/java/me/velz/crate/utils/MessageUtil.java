@@ -13,7 +13,7 @@ public enum MessageUtil {
     ERROR_CRATENOTFOUND("", "§cThis crate can not be found.", "§cDieses Crate konnte nicht gefunden werden."),
     ITEMWON("", "§aYou have §f§o%win §awon.", "§aDu hast §f§o%win §agewonnen."),
     COMMAND_HELP_RELOAD("", "§6/crates reload §fReload Configuration", "§6/crates reload §fKonfiguration neuladen"),
-    COMMAND_HELP_GIVE("", "§6/crates give <Crate> [Spieler] §fGives you a crate", "§6/crates give <Crate> [Spieler] §fGebe dir ein Crate"),
+    COMMAND_HELP_GIVE("", "§6/crates give <Crate> [Player] §fGives you a crate", "§6/crates give <Crate> [Spieler] §fGebe dir ein Crate"),
     COMMAND_HELP_LIST("", "§6/crates list §fList of all crates.", "§6/crates list §fListe aller Crates"),
     COMMAND_RELOADED("", "§aConfiguration reloaded.", "§aKonfiguration neugeladen"),
     COMMAND_GIVE("", "§aYou have give §f§o%player §athe crate §f§o%crate§a.", "§aDu hast §f§o%player §adie Crate §f§o%crate§a gegeben."),
