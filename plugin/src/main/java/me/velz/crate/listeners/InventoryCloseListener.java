@@ -30,6 +30,11 @@ public class InventoryCloseListener implements Listener {
                         Random random = new Random();
                         String name = System.currentTimeMillis() + "-" + random.nextInt(1000) + "-" + i;
                         plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".name", name);
+                        if (stack.getItemMeta() != null) {
+                            if (stack.getItemMeta().getDisplayName() != null) {
+                                plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".name", stack.getItemMeta().getDisplayName());
+                            }
+                        }
                         plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".chance", 1);
                         plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".item", stack);
                         plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".items.item", stack);
