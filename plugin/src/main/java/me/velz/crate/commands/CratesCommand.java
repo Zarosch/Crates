@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 public class CratesCommand implements CommandExecutor {
     
@@ -36,6 +37,30 @@ public class CratesCommand implements CommandExecutor {
         if(args[0].equalsIgnoreCase("reload")) {
             plugin.getFileManager().load();
             cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_RELOADED.getLocal());
+            return true;
+        }
+        
+        if(args[0].equalsIgnoreCase("additem")) {
+            if(args.length != 2) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal());
+                return true;
+            }
+            if(!(cs instanceof Player)) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_PLAYERONLY.getLocal());
+                return true;
+            }
+            
+            Player player = (Player)cs;
+            String crate = args[1];
+            
+            if(!plugin.getCrates().containsKey(crate)) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_CRATENOTFOUND.getLocal());
+                return true;
+            }
+            
+            Inventory inventory = Bukkit.createInventory(null, 27, "Crate: " + crate);
+            player.openInventory(inventory);
+            cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDITEM_OPEN.getLocal());
             return true;
         }
         

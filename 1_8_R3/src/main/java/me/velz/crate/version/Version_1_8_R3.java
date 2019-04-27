@@ -37,11 +37,6 @@ public class Version_1_8_R3 implements Version {
     }
 
     @Override
-    public String getInventoryName(InventoryClickEvent event) {
-        return event.getInventory().getTitle();
-    }
-
-    @Override
     public Material getSkullItem() {
         return Material.SKULL_ITEM;
     }

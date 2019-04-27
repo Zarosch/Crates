@@ -186,17 +186,22 @@ public class FileBuilder {
             if (Crates.getPlugin().getVersion().isUnbreakable(stack)) {
                 this.configuration.set(path + ".meta.unbreakable", true);
             }
-            if(stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ENCHANTS)) {
+            if (stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ENCHANTS)) {
                 this.configuration.set(path + ".meta.showenchant", false);
             }
-            LeatherArmorMeta armorMeta = (LeatherArmorMeta) stack.getItemMeta();
-            if (armorMeta.getColor() != null) {
-                this.configuration.set(path + ".meta.armorColor", armorMeta.getColor().asRGB());
+
+            if (stack.getItemMeta() instanceof LeatherArmorMeta) {
+                LeatherArmorMeta armorMeta = (LeatherArmorMeta) stack.getItemMeta();
+                if (armorMeta.getColor() != null) {
+                    this.configuration.set(path + ".meta.armorColor", armorMeta.getColor().asRGB());
+                }
             }
 
-            SkullMeta skullMeta = (SkullMeta) stack.getItemMeta();
-            if (Crates.getPlugin().getVersion().getSkullOwner(skullMeta) != null) {
-                this.configuration.set(path + ".meta.owningPlayer", Crates.getPlugin().getVersion().getSkullOwner(skullMeta));
+            if (stack.getItemMeta() instanceof SkullMeta) {
+                SkullMeta skullMeta = (SkullMeta) stack.getItemMeta();
+                if (Crates.getPlugin().getVersion().getSkullOwner(skullMeta) != null) {
+                    this.configuration.set(path + ".meta.owningPlayer", Crates.getPlugin().getVersion().getSkullOwner(skullMeta));
+                }
             }
         }
         if (stack.getEnchantments() != null) {

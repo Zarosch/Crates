@@ -9,7 +9,6 @@ import me.velz.crate.utils.ItemBuilder;
 import me.velz.crate.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import lombok.Getter;
 import me.velz.crate.commands.CratesCommand;
 import me.velz.crate.listeners.InventoryClickListener;
+import me.velz.crate.listeners.InventoryCloseListener;
 import me.velz.crate.listeners.PlayerInteractListener;
 import me.velz.crate.objects.Crate;
 import me.velz.crate.utils.FileManager;
@@ -38,6 +39,7 @@ public class Crates extends JavaPlugin {
         getCommand("crate").setExecutor(new CratesCommand(this));
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryCloseListener(this), this);
 
         fileManager.setDefaults();
         fileManager.load();

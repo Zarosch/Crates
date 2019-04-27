@@ -11,13 +11,16 @@ public enum MessageUtil {
     ERROR_NONUMBER("", "§cPlease enter a valid number.", "§cBitte gebe eine gültige Zahl ein.", "§cPor favor ingresa un número válido."),
     ERROR_SYNTAX("", "§cSyntax error, please use: %command", "§cSyntax Fehler, bitte nutze: %command", "§cError de sintaxis, por favor use: %command"),
     ERROR_CRATENOTFOUND("", "§cThis crate can not be found.", "§cDieses Crate konnte nicht gefunden werden.", "§cNo se pudo encontrar esa crate."),
+    ERROR_PLAYERONLY("", "§cThis command is only for players.", "§cDieser Befehl ist nur für Spieler.", "§cEste comando es solo para jugadores."),
     ITEMWON("", "§aYou have §f§o%win §awon.", "§aDu hast §f§o%win §agewonnen.", "§aHas ganado: §f§o%win"),
     COMMAND_HELP_RELOAD("", "§6/crates reload §fReload Configuration", "§6/crates reload §fKonfiguration neuladen", "§6/crates reload §fRecarga la configuración."),
     COMMAND_HELP_GIVE("", "§6/crates give <Crate> [Player] §fGives you a crate", "§6/crates give <Crate> [Spieler] §fGebe dir ein Crate", "§6/crates give <crate> [jugador] §fDa una caja."),
     COMMAND_HELP_LIST("", "§6/crates list §fList of all crates.", "§6/crates list §fListe aller Crates", "§6/crates list §fLista de crates disponibles."),
     COMMAND_RELOADED("", "§aConfiguration reloaded.", "§aKonfiguration neugeladen", "§aConfiguración recargada."),
     COMMAND_GIVE("", "§aYou have give §f§o%player §athe crate §f§o%crate§a.", "§aDu hast §f§o%player §adie Crate §f§o%crate§a gegeben.", "§aLe has dado una crate §f§o%crate§a a §f§o%player§a."),
-    COMMAND_LIST("", "§6All crates:§e %crates", "§6Alle verfügbaren Crates:§e %crates", "§6Crates disponibles:§e %crates");
+    COMMAND_LIST("", "§6All crates:§e %crates", "§6Alle verfügbaren Crates:§e %crates", "§6Crates disponibles:§e %crates"),
+    COMMAND_ADDITEM_OPEN("", "§6Put all Items they you will add in this Inventory.", "§6Packe alle Items die du hinzufügen willst in dieses Inventar.", "Empaque todos los artículos que desee agregar a este inventario."),
+    COMMAND_ADDITEM_ADDED("", "§aYour Items are added and can now edited in the crates.yml", "§aDeine Items wurden hinzugefügt und können nun in der crates.yml editiert werden.", "§aSus artículos se han agregado y ahora se pueden editar en crates.yml.");
 
     @Getter
     private String local;

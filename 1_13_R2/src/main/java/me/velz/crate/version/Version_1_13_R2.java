@@ -31,12 +31,7 @@ public class Version_1_13_R2 implements Version {
         }
         return skullMeta.getOwningPlayer().getName();
     }
-
-    @Override
-    public String getInventoryName(InventoryClickEvent event) {
-        return event.getInventory().getTitle();
-    }
-
+    
     @Override
     public Material getSkullItem() {
         return Material.PLAYER_HEAD;
