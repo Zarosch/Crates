@@ -62,31 +62,33 @@ public class FileManager {
             String name = getCratesBuilder().getString("crates." + crates + ".name");
             ItemStack item = getCratesBuilder().getItemStack("crates." + crates + ".item");
             ArrayList<CrateItem> items = new ArrayList<>();
-            for (String content : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content").getKeys(false)) {
-                String contentName = getCratesBuilder().getString("crates." + crates + ".content." + content + ".name");
-                ItemStack contentItem = getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".item");
-                ArrayList<String> commands = new ArrayList<>();
-                int chance = 1;
-                if(!getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".chance")) {
-                    getCratesBuilder().addDefault("crates." + crates + ".content." + content + ".chance", 1);
-                    getCratesBuilder().save();
-                } else {
-                    chance = getCratesBuilder().getInt("crates." + crates + ".content." + content + ".chance");
-                }
-                if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".commands")) {
-                    for (String command : getCratesBuilder().getStringList("crates." + crates + ".content." + content + ".commands")) {
-                        commands.add(command);
+            if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content")) {
+                for (String content : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content").getKeys(false)) {
+                    String contentName = getCratesBuilder().getString("crates." + crates + ".content." + content + ".name");
+                    ItemStack contentItem = getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".item");
+                    ArrayList<String> commands = new ArrayList<>();
+                    int chance = 1;
+                    if (!getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".chance")) {
+                        getCratesBuilder().addDefault("crates." + crates + ".content." + content + ".chance", 1);
+                        getCratesBuilder().save();
+                    } else {
+                        chance = getCratesBuilder().getInt("crates." + crates + ".content." + content + ".chance");
                     }
-                }
-                ArrayList<ItemStack> i = new ArrayList<>();
-                if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".items")) {
-                    for (String crateItems : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content." + content + ".items").getKeys(false)) {
-                        i.add(getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".items." + crateItems));
+                    if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".commands")) {
+                        for (String command : getCratesBuilder().getStringList("crates." + crates + ".content." + content + ".commands")) {
+                            commands.add(command);
+                        }
                     }
-                }
-                CrateItem crateItem = new CrateItem(contentName, contentItem, commands, i);
-                for(int c = 0; c != chance; c++) {
-                    items.add(crateItem);
+                    ArrayList<ItemStack> i = new ArrayList<>();
+                    if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content." + content + ".items")) {
+                        for (String crateItems : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content." + content + ".items").getKeys(false)) {
+                            i.add(getCratesBuilder().getItemStack("crates." + crates + ".content." + content + ".items." + crateItems));
+                        }
+                    }
+                    CrateItem crateItem = new CrateItem(contentName, contentItem, commands, i);
+                    for (int c = 0; c != chance; c++) {
+                        items.add(crateItem);
+                    }
                 }
             }
             Crate crate = new Crate(name, item, items);

@@ -31,6 +31,7 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage(MessageUtil.COMMAND_HELP_GIVE.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_LIST.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_ADDITEM.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDCRATE.getLocal());
             cs.sendMessage("");
             return true;
         }
@@ -41,9 +42,38 @@ public class CratesCommand implements CommandExecutor {
             return true;
         }
 
+        if (args[0].equalsIgnoreCase("addcrate")) {
+            if (!(cs instanceof Player)) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_PLAYERONLY.getLocal());
+                return true;
+            }
+            if (args.length != 2) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <crate>"));
+                return true;
+            }
+            Player player = (Player)cs;
+            String crate = args[1];
+            if (plugin.getCrates().containsKey(crate)) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_CRATEFOUND.getLocal());
+                return true;
+            }
+            
+            if(player.getItemInHand() == null) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NOITEMINHAND.getLocal());
+                return true;
+            }
+            
+            plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".name", crate + " Crate");
+            plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".item", player.getItemInHand());
+            plugin.getFileManager().getCratesBuilder().save();
+            plugin.getFileManager().load();
+            cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_ADDED.getLocal().replaceAll("%crate", crate));
+            return true;
+        }
+
         if (args[0].equalsIgnoreCase("additem")) {
             if (args.length != 2) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate additem [crate]"));
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate additem <crate>"));
                 return true;
             }
             if (!(cs instanceof Player)) {
