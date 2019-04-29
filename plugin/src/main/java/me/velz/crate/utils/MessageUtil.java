@@ -25,6 +25,7 @@ public enum MessageUtil {
     COMMAND_ADDITEM_OPEN("", "§6Put all Items they you will add in this Inventory.", "§6Packe alle Items die du hinzufügen willst in dieses Inventar.", "Empaque todos los artículos que desee agregar a este inventario."),
     COMMAND_ADDITEM_ADDED("", "§aYour Items are added and can now edited in the crates.yml", "§aDeine Items wurden hinzugefügt und können nun in der crates.yml editiert werden.", "§aSus artículos se han agregado y ahora se pueden editar en crates.yml."),
     COMMAND_ADDCRATE_NOITEMINHAND("", "§cYou have to hold an item for the crate in your hand.", "§cDu musst ein Item für das Crate in der Hand halten.", "§cTienes que sostener un objeto para el cajón en tu mano."),
+    COMMAND_ADDCRATE_NODISPLAYNAME("", "§cThe crate item must have a unique name.", "§cDas Crate Item muss einen einzigartigen namen haben.", "§cEl elemento de caja debe tener un nombre único."),
     COMMAND_ADDCRATE_ADDED("", "§aYou have the crate §f§o%crate §aadded.", "§aDu hast das Crate §f§o%crate §ahinzugefügt.", "§aUsted tiene el cajón §f§o%crate §aañadido.");
 
     @Getter

@@ -51,18 +51,28 @@ public class CratesCommand implements CommandExecutor {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <crate>"));
                 return true;
             }
-            Player player = (Player)cs;
+            Player player = (Player) cs;
             String crate = args[1];
             if (plugin.getCrates().containsKey(crate)) {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_CRATEFOUND.getLocal());
                 return true;
             }
-            
-            if(player.getItemInHand() == null) {
+
+            if (player.getItemInHand() == null) {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NOITEMINHAND.getLocal());
                 return true;
             }
-            
+
+            if (player.getItemInHand().getItemMeta().getDisplayName() == null) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NODISPLAYNAME.getLocal());
+                return true;
+            }
+
+            if (player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("")) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NODISPLAYNAME.getLocal());
+                return true;
+            }
+
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".name", crate + " Crate");
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".item", player.getItemInHand());
             plugin.getFileManager().getCratesBuilder().save();
