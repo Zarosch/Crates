@@ -8,6 +8,7 @@
     </parent>
     <artifactId>Crate</artifactId>
     <packaging>jar</packaging>
+    <version>1.7</version>
     
     <dependencies>
         <dependency>

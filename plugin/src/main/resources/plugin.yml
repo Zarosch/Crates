@@ -1,6 +1,6 @@
 name: Crates
 author: Kevin Velz
-version: 1.6.3
+version: 1.7
 main: me.velz.crate.Crates
 api-version: 1.13
 
