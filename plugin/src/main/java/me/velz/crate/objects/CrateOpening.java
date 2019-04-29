@@ -39,8 +39,8 @@ public class CrateOpening implements Runnable {
                 inventory.setItem(i - 1, inventory.getItem(i));
             }
         }
-        
-        if(!player.isOnline()) {
+
+        if (!player.isOnline()) {
             bukkitTask.cancel();
         }
 
@@ -56,6 +56,11 @@ public class CrateOpening implements Runnable {
             Bukkit.getScheduler().runTask(Crates.getPlugin(), () -> {
                 win.runCommands(player);
             });
+            for (int i = 9; i != 18; i++) {
+                if(i != 13) {
+                    inventory.setItem(i, null);
+                }
+            }
             player.removeMetadata("crate", plugin);
             player.removeMetadata("cratewinning", plugin);
             player.playSound(player.getLocation(), plugin.getVersion().getSound("ENTITY_PLAYER_LEVELUP"), 10L, 10L);
