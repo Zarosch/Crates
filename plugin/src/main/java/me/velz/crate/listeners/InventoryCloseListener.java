@@ -44,6 +44,7 @@ public class InventoryCloseListener implements Listener {
                     }
                 }
                 plugin.getFileManager().getCratesBuilder().save();
+                plugin.getFileManager().load();
                 event.getPlayer().sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDITEM_ADDED.getLocal());
             }
         }
