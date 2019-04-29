@@ -34,20 +34,63 @@ public class FileManager {
         this.getConfigBuilder().addDefault("options.animation", true);
         this.getConfigBuilder().save();
         if (!getCratesBuilder().getConfiguration().contains("crates")) {
-            this.getCratesBuilder().addDefault("crates.epic.name", "Epic Crate");
+            this.getCratesBuilder().addDefault("crates.money.name", "Money Crate");
             ArrayList<String> lore = new ArrayList<>();
-            lore.add("§7Lore..");
-            this.getCratesBuilder().addDefault("crates.epic.item", new ItemBuilder().setMaterial(Material.DRAGON_EGG).setDisplayName("§d§lEpic Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
-            this.getCratesBuilder().addDefault("crates.epic.content.egg.name", "1x Egg");
-            this.getCratesBuilder().addDefault("crates.epic.content.egg.chance", 10);
-            this.getCratesBuilder().addDefault("crates.epic.content.egg.item", new ItemBuilder().setMaterial(Material.EGG).setDisplayName("Egg").build());
-            this.getCratesBuilder().addDefault("crates.epic.content.egg.commands", new String[]{
-                "give %player minecraft:egg 1"
-            });
-            this.getCratesBuilder().addDefault("crates.epic.content.melon.name", "1x Piece of melone");
-            this.getCratesBuilder().addDefault("crates.epic.content.melon.chance", 30);
-            this.getCratesBuilder().addDefault("crates.epic.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("Piece of melone").build());
-            this.getCratesBuilder().addDefault("crates.epic.content.melon.items.melon", new ItemBuilder().setMaterial(Material.MELON).build());
+            lore.add("§7Money! Anybody needs money.");
+            this.getCratesBuilder().addDefault("crates.money.item", new ItemBuilder().setMaterial(Material.GOLD_INGOT).setShowEnchant(false).setDisplayName("§6Money Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
+            this.getCratesBuilder().addDefault("crates.money.content.rivet.name", "§cRivet");
+            this.getCratesBuilder().addDefault("crates.money.content.rivet.chance", 50);
+            this.getCratesBuilder().addDefault("crates.money.content.rivet.item", new ItemBuilder().setMaterial(Material.BARRIER).setDisplayName("§cRivet").build());
+            this.getCratesBuilder().addDefault("crates.money.content.rivet.commands", new String[]{});
+
+            this.getCratesBuilder().addDefault("crates.money.content.100-dollar.name", "§6100 Dollar!");
+            this.getCratesBuilder().addDefault("crates.money.content.100-dollar.chance", 30);
+            this.getCratesBuilder().addDefault("crates.money.content.100-dollar.item", new ItemBuilder().setMaterial(Material.GOLD_INGOT).setDisplayName("§6100 Dollar!").build());
+            this.getCratesBuilder().addDefault("crates.money.content.100-dollar.commands", new String[]{"money give %player 100"});
+
+            this.getCratesBuilder().addDefault("crates.money.content.250-dollar.name", "§6250 Dollar!");
+            this.getCratesBuilder().addDefault("crates.money.content.250-dollar.chance", 15);
+            this.getCratesBuilder().addDefault("crates.money.content.250-dollar.item", new ItemBuilder().setMaterial(Material.GOLD_INGOT).setDisplayName("§6100 Dollar!").build());
+            this.getCratesBuilder().addDefault("crates.money.content.250-dollar.commands", new String[]{"money give %player 250"});
+
+            this.getCratesBuilder().addDefault("crates.money.content.500-dollar.name", "§6500 Dollar!");
+            this.getCratesBuilder().addDefault("crates.money.content.500-dollar.chance", 5);
+            this.getCratesBuilder().addDefault("crates.money.content.500-dollar.item", new ItemBuilder().setMaterial(Material.GOLD_BLOCK).setDisplayName("§6500 Dollar!").build());
+            this.getCratesBuilder().addDefault("crates.money.content.500-dollar.commands", new String[]{"money give %player 500"});
+
+            this.getCratesBuilder().addDefault("crates.food.name", "Food Crate");
+            lore.clear();
+            lore.add("§7Food! Anybody needs food.");
+            this.getCratesBuilder().addDefault("crates.food.item", new ItemBuilder().setMaterial(Material.MELON).setShowEnchant(false).setDisplayName("§aFood Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
+            this.getCratesBuilder().addDefault("crates.food.content.melon.name", "§aMelon");
+            this.getCratesBuilder().addDefault("crates.food.content.melon.chance", 1);
+            this.getCratesBuilder().addDefault("crates.food.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("§aMelon").setAmount(16).build());
+            this.getCratesBuilder().addDefault("crates.food.content.melon.items.item", new ItemBuilder().setMaterial(Material.MELON).setAmount(16).build());
+
+            this.getCratesBuilder().addDefault("crates.food.content.bread.name", "§6Bread");
+            this.getCratesBuilder().addDefault("crates.food.content.bread.chance", 1);
+            this.getCratesBuilder().addDefault("crates.food.content.bread.item", new ItemBuilder().setMaterial(Material.BREAD).setDisplayName("§6Bread").setAmount(16).build());
+            this.getCratesBuilder().addDefault("crates.food.content.bread.items.item", new ItemBuilder().setMaterial(Material.BREAD).setAmount(16).build());
+
+            this.getCratesBuilder().addDefault("crates.food.content.apple.name", "§cApple");
+            this.getCratesBuilder().addDefault("crates.food.content.apple.chance", 1);
+            this.getCratesBuilder().addDefault("crates.food.content.apple.item", new ItemBuilder().setMaterial(Material.APPLE).setDisplayName("§cApple").setAmount(16).build());
+            this.getCratesBuilder().addDefault("crates.food.content.apple.items.item", new ItemBuilder().setMaterial(Material.APPLE).setAmount(16).build());
+
+            this.getCratesBuilder().addDefault("crates.food.content.cookie.name", "§6Cookie");
+            this.getCratesBuilder().addDefault("crates.food.content.cookie.chance", 1);
+            this.getCratesBuilder().addDefault("crates.food.content.cookie.item", new ItemBuilder().setMaterial(Material.COOKIE).setDisplayName("§6Cookie").setAmount(16).build());
+            this.getCratesBuilder().addDefault("crates.food.content.cookie.items.item", new ItemBuilder().setMaterial(Material.COOKIE).setAmount(16).build());
+
+            this.getCratesBuilder().addDefault("crates.food.content.beef.name", "§dBeef");
+            this.getCratesBuilder().addDefault("crates.food.content.beef.chance", 1);
+            this.getCratesBuilder().addDefault("crates.food.content.beef.item", new ItemBuilder().setMaterial(Material.COOKED_BEEF).setDisplayName("§dBeef").setAmount(16).build());
+            this.getCratesBuilder().addDefault("crates.food.content.beef.items.item", new ItemBuilder().setMaterial(Material.COOKED_BEEF).setAmount(16).build());
+
+            this.getCratesBuilder().addDefault("crates.food.content.chicken.name", "§dChicken");
+            this.getCratesBuilder().addDefault("crates.food.content.chicken.chance", 1);
+            this.getCratesBuilder().addDefault("crates.food.content.chicken.item", new ItemBuilder().setMaterial(Material.COOKED_CHICKEN).setDisplayName("§dChicken").setAmount(16).build());
+            this.getCratesBuilder().addDefault("crates.food.content.chicken.items.item", new ItemBuilder().setMaterial(Material.COOKED_CHICKEN).setAmount(16).build());
         }
         this.getCratesBuilder().save();
     }
