@@ -95,6 +95,9 @@ public class FileBuilder {
                 if (Crates.getPlugin().getVersion().isUnbreakable(stack)) {
                     this.configuration.set(path + ".meta.unbreakable", true);
                 }
+                if (stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ENCHANTS)) {
+                    this.configuration.set(path + ".meta.showenchant", false);
+                }
                 try {
                     LeatherArmorMeta armorMeta = (LeatherArmorMeta) stack.getItemMeta();
                     if (armorMeta.getColor() != null) {
