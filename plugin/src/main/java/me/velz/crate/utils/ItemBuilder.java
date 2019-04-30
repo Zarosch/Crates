@@ -26,7 +26,7 @@ public class ItemBuilder {
     private String owner;
     private final HashMap<Enchantment, Integer> safeEnchant = new HashMap<>();
     private final HashMap<Enchantment, Integer> unSafeEnchant = new HashMap<>();
-    private boolean unbreakable = false, soulbound = false, showenchant = true;
+    private boolean unbreakable = false, showenchant = true, showattributes = true;
 
     //<editor-fold defaultstate="collapsed" desc="setMaterial">
     public ItemBuilder setMaterial(Material material) {
@@ -127,16 +127,16 @@ public class ItemBuilder {
     }
     //</editor-fold>
     
-    //<editor-fold defaultstate="collapsed" desc="setUnbreakable">
-    public ItemBuilder setUnbreakable(boolean unbreakable) {
-        this.unbreakable = unbreakable;
+    //<editor-fold defaultstate="collapsed" desc="setShowAttributes">
+    public ItemBuilder setShowAttributes(boolean showattributes) {
+        this.showattributes = showattributes;
         return this;
     }
     //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="setSoulbound">
-    public ItemBuilder setSoulbound(boolean soulbound) {
-        this.soulbound = soulbound;
+    
+    //<editor-fold defaultstate="collapsed" desc="setUnbreakable">
+    public ItemBuilder setUnbreakable(boolean unbreakable) {
+        this.unbreakable = unbreakable;
         return this;
     }
     //</editor-fold>
@@ -180,6 +180,9 @@ public class ItemBuilder {
         }
         if (!showenchant) {
             im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+        if (!showattributes) {
+            im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         }
         is.setItemMeta(im);
         if (owner != null) {

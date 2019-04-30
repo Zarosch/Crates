@@ -98,6 +98,9 @@ public class FileBuilder {
                 if (stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ENCHANTS)) {
                     this.configuration.set(path + ".meta.showenchant", false);
                 }
+                if (stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ATTRIBUTES)) {
+                    this.configuration.set(path + ".meta.showattributes", false);
+                }
                 try {
                     LeatherArmorMeta armorMeta = (LeatherArmorMeta) stack.getItemMeta();
                     if (armorMeta.getColor() != null) {
@@ -192,7 +195,10 @@ public class FileBuilder {
             if (stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ENCHANTS)) {
                 this.configuration.set(path + ".meta.showenchant", false);
             }
-
+            if (stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ATTRIBUTES)) {
+                this.configuration.set(path + ".meta.showattributes", false);
+            }
+            
             if (stack.getItemMeta() instanceof LeatherArmorMeta) {
                 LeatherArmorMeta armorMeta = (LeatherArmorMeta) stack.getItemMeta();
                 if (armorMeta.getColor() != null) {
@@ -288,6 +294,9 @@ public class FileBuilder {
         }
         if (this.configuration.contains(path + ".meta.showenchant")) {
             builder.setShowEnchant(this.configuration.getBoolean(path + ".meta.showenchant"));
+        }
+        if (this.configuration.contains(path + ".meta.showattributes")) {
+            builder.setShowAttributes(this.configuration.getBoolean(path + ".meta.showattributes"));
         }
         if (this.configuration.contains(path + ".meta.armorColor")) {
             builder.setColor(this.configuration.getInt(path + ".meta.armorColor"));
