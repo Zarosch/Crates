@@ -15,6 +15,10 @@
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
+        <repository>
+            <id>inventive-repo</id>
+            <url>https://repo.inventivetalent.org/content/groups/public/</url>
+        </repository>
     </repositories>
     
     <dependencies>
@@ -24,6 +28,12 @@
             <version>1_14_R1</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/spigot-1.8.8.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.inventivetalent.spiget-update</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.4.2-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>me.velz</groupId>

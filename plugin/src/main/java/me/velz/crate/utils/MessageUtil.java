@@ -6,6 +6,8 @@ import me.velz.crate.Crates;
 public enum MessageUtil {
 
     PREFIX("", "§f[§eCrates§f] ", "§f[§eCrates§f] ", "§f[§eCrates§f] "),
+    UPDATE("", "§cPlease Update! §e%url", "§cBitte Updaten! §e%url", "§cPor favor actualice! §e%url"),
+    UPDATE_RESTART("", "§cCrates have §eupdated automatically§c, please §erestart your server§c!", "§cCrates hat sich §eautomatisch geupdatet§c, bitte §estarte deinen Server neu§c!", "§cLas cajas se han actualizado automáticamente, reinicie su servidor!"),
     ERROR_NOPERMISSIONS("", "§cYou dont have permissions.", "§cDazu hast du keine Berechtigung.", "§cNo tienes permiso."),
     ERROR_PLAYERNOTFOUND("", "§cThis player can not be found.", "§cDieser Spieler konnte nicht gefunden werden.", "§cJugador no encontrado"),
     ERROR_NONUMBER("", "§cPlease enter a valid number.", "§cBitte gebe eine gültige Zahl ein.", "§cPor favor ingresa un número válido."),
