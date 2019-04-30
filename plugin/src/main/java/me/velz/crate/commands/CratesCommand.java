@@ -34,7 +34,7 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage(MessageUtil.COMMAND_HELP_GIVE.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_LIST.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_ADDITEM.getLocal());
-            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDCRATE.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDCRATEV2.getLocal());
             cs.sendMessage("");
             return true;
         }
@@ -47,7 +47,7 @@ public class CratesCommand implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("addcrate")) {
             if (args.length <= 2) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <id> <itemname>"));
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <crate> <itemname>"));
                 return true;
             }
             String crate = args[1];

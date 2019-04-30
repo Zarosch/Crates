@@ -20,7 +20,7 @@ public enum MessageUtil {
     COMMAND_HELP_GIVE("", "§6/crates give <Crate> [Player] §fGives you a crate", "§6/crates give <Crate> [Spieler] §fGebe dir ein Crate", "§6/crates give <crate> [jugador] §fDa una caja."),
     COMMAND_HELP_LIST("", "§6/crates list §fList of all crates.", "§6/crates list §fListe aller Crates", "§6/crates list §fLista de crates disponibles."),
     COMMAND_HELP_ADDITEM("", "§6/crates additem <Crate> §fAdd Item to crate content", "§6/crates additem <Crate> §fItem zum Crate Content hinzufügen.", "§6/crates additem <Crate> §fAñadir artículo al contenido de la caja"),
-    COMMAND_HELP_ADDCRATE("", "§6/crates addcrate <Crate> §fAdd a new crate", "§6/crates addcrate <Crate> §fCrate hinzufügen", ""),
+    COMMAND_HELP_ADDCRATEV2("", "§6/crates addcrate <crate> <itemname> §fAdd a new crate", "§6/crates addcrate <crate> <itemname> §fCrate hinzufügen", "§6/crates addcrate <crate> <itemname> §fAñadir caja"),
     COMMAND_RELOADED("", "§aConfiguration reloaded.", "§aKonfiguration neugeladen", "§aConfiguración recargada."),
     COMMAND_GIVE("", "§aYou have give §f§o%player §athe crate §f§o%crate§a.", "§aDu hast §f§o%player §adie Crate §f§o%crate§a gegeben.", "§aLe has dado una crate §f§o%crate§a a §f§o%player§a."),
     COMMAND_LIST("", "§6All crates:§e %crates", "§6Alle verfügbaren Crates:§e %crates", "§6Crates disponibles:§e %crates"),
