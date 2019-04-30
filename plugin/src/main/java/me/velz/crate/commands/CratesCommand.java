@@ -1,11 +1,14 @@
 package me.velz.crate.commands;
 
 import me.velz.crate.Crates;
+import me.velz.crate.utils.ItemBuilder;
 import me.velz.crate.utils.MessageUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
@@ -43,46 +46,27 @@ public class CratesCommand implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase("addcrate")) {
-            if (!(cs instanceof Player)) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_PLAYERONLY.getLocal());
+            if (args.length <= 2) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <id> <itemname>"));
                 return true;
             }
-            if (args.length != 2) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <crate>"));
-                return true;
-            }
-            Player player = (Player) cs;
             String crate = args[1];
             if (plugin.getCrates().containsKey(crate)) {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_CRATEFOUND.getLocal());
                 return true;
             }
-
-            if (player.getItemInHand() == null) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NOITEMINHAND.getLocal());
-                return true;
+            
+            String displayname = "";
+            for(int i = 2; i != args.length; i++) {
+                displayname = displayname + args[i] + " ";
             }
-
-            if (player.getItemInHand().getItemMeta() == null) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NODISPLAYNAME.getLocal());
-                return true;
-            }
-
-            if (player.getItemInHand().getItemMeta().getDisplayName() == null) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NODISPLAYNAME.getLocal());
-                return true;
-            }
-
-            if (player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("")) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NODISPLAYNAME.getLocal());
-                return true;
-            }
-
+            displayname = displayname.substring(0, displayname.length()-1);
+            
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".name", crate + " Crate");
-            plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".item", player.getItemInHand());
+            plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".item", new ItemBuilder().setMaterial(Material.DRAGON_EGG).addEnchantment(Enchantment.LUCK, 1, false).setShowEnchant(false).setDisplayName(displayname).build());
             plugin.getFileManager().getCratesBuilder().save();
             plugin.getFileManager().load();
-            cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_ADDED.getLocal().replaceAll("%crate", crate));
+            cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_ADDED.getLocal().replaceAll("%crate", displayname));
             return true;
         }
 
