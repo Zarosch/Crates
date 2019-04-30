@@ -28,16 +28,11 @@ public class PlayerJoinListener implements Listener {
                     if (hasDirectDownload) {
                         if (updater.downloadUpdate()) {
                             event.getPlayer().sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.UPDATE_RESTART.getLocal());
-                            System.out.println("[Crates] Update downloaded. Please restart your server.");
                         } else {
-                            System.out.println("[Crates] Please Update! Newest Version: " + newVersion);
-                            System.out.println("[Crates] " + downloadUrl);
-                            System.out.println("[Crates] Auto Update failed! Reason: " + updater.getFailReason());
                             event.getPlayer().sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.UPDATE.getLocal().replaceAll("%url", downloadUrl));
                         }
                     } else {
-                        System.out.println("[Crates] Please Update! Newest Version: " + newVersion);
-                        System.out.println("[Crates] " + downloadUrl);
+                        event.getPlayer().sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.UPDATE.getLocal().replaceAll("%url", downloadUrl));
                     }
                 }
 
