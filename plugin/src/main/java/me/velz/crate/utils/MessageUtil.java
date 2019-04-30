@@ -21,6 +21,7 @@ public enum MessageUtil {
     COMMAND_HELP_LIST("", "§6/crates list §fList of all crates.", "§6/crates list §fListe aller Crates", "§6/crates list §fLista de crates disponibles."),
     COMMAND_HELP_ADDITEM("", "§6/crates additem <Crate> §fAdd Item to crate content", "§6/crates additem <Crate> §fItem zum Crate Content hinzufügen.", "§6/crates additem <Crate> §fAñadir artículo al contenido de la caja"),
     COMMAND_HELP_ADDCRATEV2("", "§6/crates addcrate <crate> <itemname> §fAdd a new crate", "§6/crates addcrate <crate> <itemname> §fCrate hinzufügen", "§6/crates addcrate <crate> <itemname> §fAñadir caja"),
+    COMMAND_HELP_REMOVECRATE("", "§6/crates removecrate <crate> §fRemove a crate", "§6/crates removecrate <crate> §fCrate entfernen", "§6/crates removecrate <crate> §fQuitar la caja"),
     COMMAND_RELOADED("", "§aConfiguration reloaded.", "§aKonfiguration neugeladen", "§aConfiguración recargada."),
     COMMAND_GIVE("", "§aYou have give §f§o%player §athe crate §f§o%crate§a.", "§aDu hast §f§o%player §adie Crate §f§o%crate§a gegeben.", "§aLe has dado una crate §f§o%crate§a a §f§o%player§a."),
     COMMAND_LIST("", "§6All crates:§e %crates", "§6Alle verfügbaren Crates:§e %crates", "§6Crates disponibles:§e %crates"),
@@ -28,7 +29,8 @@ public enum MessageUtil {
     COMMAND_ADDITEM_ADDED("", "§aYour Items are added and can now edited in the crates.yml", "§aDeine Items wurden hinzugefügt und können nun in der crates.yml editiert werden.", "§aSus artículos se han agregado y ahora se pueden editar en crates.yml."),
     COMMAND_ADDCRATE_NOITEMINHAND("", "§cYou have to hold an item for the crate in your hand.", "§cDu musst ein Item für das Crate in der Hand halten.", "§cTienes que sostener un objeto para el cajón en tu mano."),
     COMMAND_ADDCRATE_NODISPLAYNAME("", "§cThe crate item must have a unique name.", "§cDas Crate Item muss einen einzigartigen namen haben.", "§cEl elemento de caja debe tener un nombre único."),
-    COMMAND_ADDCRATE_ADDED("", "§aYou have the crate §f§o%crate §aadded.", "§aDu hast das Crate §f§o%crate §ahinzugefügt.", "§aUsted tiene el cajón §f§o%crate §aañadido.");
+    COMMAND_ADDCRATE_ADDED("", "§aYou have the crate §f§o%crate §aadded.", "§aDu hast das Crate §f§o%crate §ahinzugefügt.", "§aUsted tiene el cajón §f§o%crate §aañadido."),
+    COMMAND_REMOVECRATE("", "§eYou have the crate §f§o%crate §eremoved.", "§eDu hast das Crate §f§o%crate §eentfernt.", "§eHas eliminado la caja §f§o%crate§e crate.");
 
     @Getter
     private String local;

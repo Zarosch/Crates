@@ -1,5 +1,6 @@
 package me.velz.crate.commands;
 
+import java.io.IOException;
 import me.velz.crate.Crates;
 import me.velz.crate.utils.ItemBuilder;
 import me.velz.crate.utils.MessageUtil;
@@ -35,6 +36,7 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage(MessageUtil.COMMAND_HELP_LIST.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_ADDITEM.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_ADDCRATEV2.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_REMOVECRATE.getLocal());
             cs.sendMessage("");
             return true;
         }
@@ -55,18 +57,36 @@ public class CratesCommand implements CommandExecutor {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_CRATEFOUND.getLocal());
                 return true;
             }
-            
+
             String displayname = "";
-            for(int i = 2; i != args.length; i++) {
+            for (int i = 2; i != args.length; i++) {
                 displayname = displayname + args[i] + " ";
             }
-            displayname = displayname.substring(0, displayname.length()-1);
-            
+            displayname = displayname.substring(0, displayname.length() - 1);
+
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".name", crate + " Crate");
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".item", new ItemBuilder().setMaterial(Material.DRAGON_EGG).addEnchantment(Enchantment.LUCK, 1, false).setShowEnchant(false).setDisplayName(displayname).build());
             plugin.getFileManager().getCratesBuilder().save();
             plugin.getFileManager().load();
-            cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_ADDED.getLocal().replaceAll("%crate", displayname));
+            cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_ADDED.getLocal().replaceAll("%crate", crate));
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("removecrate")) {
+            if (args.length != 2) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate removecrate <crate>"));
+                return true;
+            }
+            String crate = args[1];
+            if (!plugin.getCrates().containsKey(crate)) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_CRATENOTFOUND.getLocal());
+                return true;
+            }
+
+            plugin.getFileManager().getCratesBuilder().getConfiguration().set("crates." + crate, null);
+            plugin.getFileManager().getCratesBuilder().save();
+            plugin.getFileManager().load();
+            cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_REMOVECRATE.getLocal().replaceAll("%crate", crate));
             return true;
         }
 
