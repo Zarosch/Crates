@@ -11,6 +11,7 @@ import me.velz.crate.objects.Crate;
 import me.velz.crate.utils.FileManager;
 import me.velz.crate.version.Version;
 import me.velz.crate.version.VersionMatcher;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -45,6 +46,7 @@ public class Crates extends JavaPlugin {
 
         fileManager.setDefaults();
         fileManager.load();
+        Metrics metrics = new Metrics(this);
     }
 
     public boolean inventoryContains(Inventory inventory, ItemStack item) {
