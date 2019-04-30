@@ -63,6 +63,11 @@ public class CratesCommand implements CommandExecutor {
                 return true;
             }
 
+            if (player.getItemInHand().getItemMeta() == null) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NODISPLAYNAME.getLocal());
+                return true;
+            }
+
             if (player.getItemInHand().getItemMeta().getDisplayName() == null) {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDCRATE_NODISPLAYNAME.getLocal());
                 return true;
