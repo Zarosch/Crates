@@ -7,7 +7,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>Crate</artifactId>
-  <version>1.9</version>
+  <version>1.10</version>
   <build>
     <plugins>
       <plugin>
@@ -54,7 +54,7 @@
       <artifactId>spigot</artifactId>
       <version>1_14_R1</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/spigot-1.8.8.jar</systemPath>
+      <systemPath>${basedir}/lib/spigot-1.15.1.jar</systemPath>
     </dependency>
   </dependencies>
 </project>

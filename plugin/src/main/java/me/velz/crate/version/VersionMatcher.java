@@ -16,7 +16,8 @@ public class VersionMatcher {
             Version_1_12_R1.class,
             Version_1_13_R1.class,
             Version_1_13_R2.class,
-            Version_1_14_R1.class
+            Version_1_14_R1.class,
+            Version_1_15_R1.class
     );
     
     public Version match() {

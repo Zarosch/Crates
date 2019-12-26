@@ -126,14 +126,14 @@ public class ItemBuilder {
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="setShowAttributes">
     public ItemBuilder setShowAttributes(boolean showattributes) {
         this.showattributes = showattributes;
         return this;
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="setUnbreakable">
     public ItemBuilder setUnbreakable(boolean unbreakable) {
         this.unbreakable = unbreakable;
@@ -175,9 +175,6 @@ public class ItemBuilder {
         if (lore != null) {
             im.setLore(lore);
         }
-        if (unbreakable) {
-            im.spigot().setUnbreakable(true);
-        }
         if (!showenchant) {
             im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         }
@@ -185,6 +182,9 @@ public class ItemBuilder {
             im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         }
         is.setItemMeta(im);
+        if (unbreakable) {
+            Crates.getPlugin().getVersion().setUnbreakable(is, true);
+        }
         if (owner != null) {
             SkullMeta sm = (SkullMeta) is.getItemMeta();
             sm.setOwner(owner);
