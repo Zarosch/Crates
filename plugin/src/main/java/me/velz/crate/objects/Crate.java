@@ -10,14 +10,15 @@ public class Crate {
     private final String name;
     
     @Getter
-    private final ItemStack item;
+    private final ItemStack item, background;
     
     @Getter
     private final ArrayList<CrateItem> crateItems;
 
-    public Crate(String name, ItemStack item, ArrayList<CrateItem> crateItems) {
+    public Crate(String name, ItemStack item, ItemStack background, ArrayList<CrateItem> crateItems) {
         this.name = name;
         this.item = item;
+        this.background = background;
         this.crateItems = crateItems;
     }
     

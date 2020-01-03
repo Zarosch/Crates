@@ -59,6 +59,8 @@ public class FileManager {
             this.getCratesBuilder().addDefault("crates.money.content.500-dollar.item", new ItemBuilder().setMaterial(Material.GOLD_BLOCK).setDisplayName("§6500 Dollar!").build());
             this.getCratesBuilder().addDefault("crates.money.content.500-dollar.commands", new String[]{"money give %player 500"});
 
+            this.getCratesBuilder().addDefault("crates.money.inventory-background", plugin.getVersion().getDefaultCrateLimeGlass());
+
             this.getCratesBuilder().addDefault("crates.food.name", "Food Crate");
             lore.clear();
             lore.add("§7Food! Anybody needs food.");
@@ -106,6 +108,10 @@ public class FileManager {
             String name = getCratesBuilder().getString("crates." + crates + ".name");
             ItemStack item = getCratesBuilder().getItemStack("crates." + crates + ".item");
             ArrayList<CrateItem> items = new ArrayList<>();
+            ItemStack background = null;
+            if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".inventory-background")) {
+                background = getCratesBuilder().getItemStack("crates." + crates + ".inventory-background");
+            }
             if (getCratesBuilder().getConfiguration().contains("crates." + crates + ".content")) {
                 for (String content : getCratesBuilder().getConfiguration().getConfigurationSection("crates." + crates + ".content").getKeys(false)) {
                     String contentName = getCratesBuilder().getString("crates." + crates + ".content." + content + ".name");
@@ -135,7 +141,7 @@ public class FileManager {
                     }
                 }
             }
-            Crate crate = new Crate(name, item, items);
+            Crate crate = new Crate(name, item, background, items);
             plugin.getCrates().put(crates, crate);
         }
         MessageUtil.load();

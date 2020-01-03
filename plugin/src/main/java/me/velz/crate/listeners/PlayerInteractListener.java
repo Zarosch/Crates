@@ -45,7 +45,25 @@ public class PlayerInteractListener implements Listener {
                             if (plugin.getFileManager().isAnimation()) {
                                 Inventory inventory = Bukkit.createInventory(null, 27, crate.getName());
                                 inventory.setItem(4, new ItemBuilder().setDisplayName(" ").setMaterial(Material.HOPPER).build());
-
+                                if(crate.getBackground() != null) {
+                                    inventory.setItem(0, crate.getBackground());
+                                    inventory.setItem(1, crate.getBackground());
+                                    inventory.setItem(2, crate.getBackground());
+                                    inventory.setItem(3, crate.getBackground());
+                                    inventory.setItem(5, crate.getBackground());
+                                    inventory.setItem(6, crate.getBackground());
+                                    inventory.setItem(7, crate.getBackground());
+                                    inventory.setItem(8, crate.getBackground());
+                                    inventory.setItem(26, crate.getBackground());
+                                    inventory.setItem(25, crate.getBackground());
+                                    inventory.setItem(24, crate.getBackground());
+                                    inventory.setItem(23, crate.getBackground());
+                                    inventory.setItem(22, crate.getBackground());
+                                    inventory.setItem(21, crate.getBackground());
+                                    inventory.setItem(20, crate.getBackground());
+                                    inventory.setItem(19, crate.getBackground());
+                                    inventory.setItem(18, crate.getBackground());
+                                }
                                 event.getPlayer().openInventory(inventory);
                                 new CrateOpening(plugin, event.getPlayer(), inventory, crate);
                                 plugin.removeFromInventory(event.getPlayer().getInventory(), crate.getItem());

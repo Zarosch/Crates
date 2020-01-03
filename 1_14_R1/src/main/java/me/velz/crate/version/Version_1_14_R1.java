@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class Version_1_14_R1 implements Version {
@@ -35,6 +36,16 @@ public class Version_1_14_R1 implements Version {
     @Override
     public Material getSkullItem() {
         return Material.PLAYER_HEAD;
+    }
+
+    @Override
+    public ItemStack getDefaultCrateLimeGlass() {
+        ItemStack itemStack = new ItemStack(Material.YELLOW_STAINED_GLASS_PANE);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(" ");
+        itemStack.setItemMeta(itemMeta);
+
+        return itemStack;
     }
 
 }

@@ -17,4 +17,6 @@ public interface Version {
         
     public Material getSkullItem();
     
+    public ItemStack getDefaultCrateLimeGlass();
+    
 }

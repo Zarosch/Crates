@@ -8,7 +8,7 @@
     </parent>
     <artifactId>Crate</artifactId>
     <packaging>jar</packaging>
-    <version>1.10</version>
+    <version>1.11</version>
     
     <repositories>
         <repository>
