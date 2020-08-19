@@ -1,5 +1,6 @@
 package me.velz.crate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import lombok.Getter;
 import me.velz.crate.commands.CratesCommand;
@@ -9,6 +10,7 @@ import me.velz.crate.listeners.PlayerInteractListener;
 import me.velz.crate.listeners.PlayerJoinListener;
 import me.velz.crate.listeners.PlayerQuitListener;
 import me.velz.crate.objects.Crate;
+import me.velz.crate.objects.CrateChest;
 import me.velz.crate.utils.FileManager;
 import me.velz.crate.version.Version;
 import me.velz.crate.version.VersionMatcher;
@@ -31,6 +33,9 @@ public class Crates extends JavaPlugin {
 
     @Getter
     private final HashMap<String, Crate> crates = new HashMap();
+    
+    @Getter
+    private final ArrayList<CrateChest> openers = new ArrayList<>();
 
     @Getter
     private final VersionMatcher versionMatcher = new VersionMatcher();

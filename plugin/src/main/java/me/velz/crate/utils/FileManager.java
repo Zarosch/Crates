@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import lombok.Getter;
 import me.velz.crate.Crates;
 import me.velz.crate.objects.Crate;
+import me.velz.crate.objects.CrateChest;
 import me.velz.crate.objects.CrateItem;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -36,6 +39,7 @@ public class FileManager {
         this.getConfigBuilder().save();
         if (!getCratesBuilder().getConfiguration().contains("crates")) {
             this.getCratesBuilder().addDefault("crates.money.name", "Money Crate");
+            this.getCratesBuilder().addDefault("crates.money.type", "crate");
             ArrayList<String> lore = new ArrayList<>();
             lore.add("§7Money! Anybody needs money.");
             this.getCratesBuilder().addDefault("crates.money.item", new ItemBuilder().setMaterial(Material.GOLD_INGOT).setShowEnchant(false).setDisplayName("§6Money Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
@@ -61,10 +65,11 @@ public class FileManager {
 
             this.getCratesBuilder().addDefault("crates.money.inventory-background", plugin.getVersion().getDefaultCrateLimeGlass());
 
-            this.getCratesBuilder().addDefault("crates.food.name", "Food Crate");
+            this.getCratesBuilder().addDefault("crates.food.name", "Food Key");
+            this.getCratesBuilder().addDefault("crates.food.type", "key");
             lore.clear();
             lore.add("§7Food! Anybody needs food.");
-            this.getCratesBuilder().addDefault("crates.food.item", new ItemBuilder().setMaterial(Material.MELON).setShowEnchant(false).setDisplayName("§aFood Crate").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
+            this.getCratesBuilder().addDefault("crates.food.item", new ItemBuilder().setMaterial(Material.TRIPWIRE_HOOK).setShowEnchant(false).setDisplayName("§aFood Key").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());
             this.getCratesBuilder().addDefault("crates.food.content.melon.name", "§aMelon");
             this.getCratesBuilder().addDefault("crates.food.content.melon.chance", 1);
             this.getCratesBuilder().addDefault("crates.food.content.melon.item", new ItemBuilder().setMaterial(Material.MELON).setDisplayName("§aMelon").setAmount(16).build());
@@ -95,6 +100,12 @@ public class FileManager {
             this.getCratesBuilder().addDefault("crates.food.content.chicken.item", new ItemBuilder().setMaterial(Material.COOKED_CHICKEN).setDisplayName("§dChicken").setAmount(16).build());
             this.getCratesBuilder().addDefault("crates.food.content.chicken.items.item", new ItemBuilder().setMaterial(Material.COOKED_CHICKEN).setAmount(16).build());
         }
+        if (!getCratesBuilder().getConfiguration().contains("opener")) {
+            this.getCratesBuilder().addDefault("opener.example.keys", new String[]{
+                "food"
+            });
+            this.getCratesBuilder().addDefault("opener.example.locations", new String[]{});
+        }
         this.getCratesBuilder().save();
     }
 
@@ -104,8 +115,26 @@ public class FileManager {
         this.language = this.getConfigBuilder().getString("language");
         this.animation = this.getConfigBuilder().getBoolean("options.animation");
         plugin.getCrates().clear();
+
+        for (String opener : getCratesBuilder().getConfiguration().getConfigurationSection("opener").getKeys(false)) {
+            ArrayList<String> openerCrates = getCratesBuilder().getStringListAsArrayList("opener." + opener + ".keys");
+            ArrayList<String> openerLocations = getCratesBuilder().getStringListAsArrayList("opener." + opener + ".locations");
+            ArrayList<Location> realLocations = new ArrayList<>();
+            for(String location : openerLocations) {
+                // world;x;y;z;
+                String[] splitted = location.split(";");
+                realLocations.add(new Location(Bukkit.getWorld(splitted[0]), Double.valueOf(splitted[1]), Double.valueOf(splitted[2]), Double.valueOf(splitted[3])));
+            }
+            plugin.getOpeners().add(new CrateChest("opener", realLocations, openerCrates));
+        }
+
         for (String crates : getCratesBuilder().getConfiguration().getConfigurationSection("crates").getKeys(false)) {
             String name = getCratesBuilder().getString("crates." + crates + ".name");
+            if (!getCratesBuilder().getConfiguration().contains("crates." + crates + ".type")) {
+                getCratesBuilder().set("crates." + crates + ".type", "crate");
+                getCratesBuilder().save();
+            }
+            String type = getCratesBuilder().getString("crates." + crates + ".type");
             ItemStack item = getCratesBuilder().getItemStack("crates." + crates + ".item");
             ArrayList<CrateItem> items = new ArrayList<>();
             ItemStack background = null;
@@ -141,7 +170,7 @@ public class FileManager {
                     }
                 }
             }
-            Crate crate = new Crate(name, item, background, items);
+            Crate crate = new Crate(name, item, background, items, type);
             plugin.getCrates().put(crates, crate);
         }
         MessageUtil.load();

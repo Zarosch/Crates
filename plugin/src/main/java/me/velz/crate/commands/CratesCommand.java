@@ -46,6 +46,14 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_RELOADED.getLocal());
             return true;
         }
+        
+        if(args[0].equalsIgnoreCase("addchest")) {
+            if (args.length <= 2) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addchest <chest>"));
+                return true;
+            }
+            
+        }
 
         if (args[0].equalsIgnoreCase("addcrate")) {
             if (args.length <= 2) {
@@ -122,12 +130,18 @@ public class CratesCommand implements CommandExecutor {
                 return true;
             }
 
+            boolean all = false;
+
             if (args.length == 3) {
                 if (Bukkit.getPlayer(args[2]) == null) {
                     cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_PLAYERNOTFOUND.getLocal());
                     return true;
                 }
-                player = Bukkit.getPlayer(args[2]);
+                if (args[2].equalsIgnoreCase("@all")) {
+                    all = true;
+                } else {
+                    player = Bukkit.getPlayer(args[2]);
+                }
             } else if (cs instanceof Player) {
                 player = (Player) cs;
             } else {
@@ -140,8 +154,13 @@ public class CratesCommand implements CommandExecutor {
                 cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_CRATENOTFOUND.getLocal());
                 return true;
             }
-
-            player.getInventory().addItem(plugin.getCrates().get(crate).getItem());
+            if (all) {
+                for (Player a : Bukkit.getOnlinePlayers()) {
+                    a.getInventory().addItem(plugin.getCrates().get(crate).getItem());
+                }
+            } else {
+                player.getInventory().addItem(plugin.getCrates().get(crate).getItem());
+            }
             cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_GIVE.getLocal().replaceAll("%player", player.getName()).replaceAll("%crate", crate));
             return true;
         }

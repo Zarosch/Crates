@@ -8,7 +8,7 @@
     </parent>
     <artifactId>Crate</artifactId>
     <packaging>jar</packaging>
-    <version>1.12</version>
+    <version>1.13</version>
     
     <repositories>
         <repository>
@@ -27,7 +27,7 @@
             <artifactId>spigot</artifactId>
             <version>1_14_R1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.16.1.jar</systemPath>
+            <systemPath>${basedir}/lib/spigot-1.16.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.inventivetalent.spiget-update</groupId>
@@ -83,9 +83,15 @@
             <version>1.2</version>
             <scope>compile</scope>
         </dependency>
-	<dependency>
+        <dependency>
             <groupId>me.velz</groupId>
             <artifactId>Crate-1_16_R1</artifactId>
+            <version>1.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.velz</groupId>
+            <artifactId>Crate-1_16_R2</artifactId>
             <version>1.2</version>
             <scope>compile</scope>
         </dependency>
