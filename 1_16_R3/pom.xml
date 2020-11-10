@@ -6,16 +6,16 @@
         <artifactId>Crate-modules</artifactId>
         <version>1.2</version>
     </parent>
-    <artifactId>Crate-1_15_R1</artifactId>
+    <artifactId>Crate-1_16_R3</artifactId>
     <packaging>jar</packaging>
     
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1_15_R1</version>
+            <version>1_16_R3</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.15.2.jar</systemPath>
+            <systemPath>${basedir}/lib/spigot-1.16.3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>me.velz</groupId>

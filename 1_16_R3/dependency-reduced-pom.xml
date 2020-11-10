@@ -6,7 +6,7 @@
     <version>1.2</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>Crate-1_12_R1</artifactId>
+  <artifactId>Crate-1_16_R3</artifactId>
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -17,9 +17,9 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot</artifactId>
-      <version>1_12_R1</version>
+      <version>1_16_R3</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/spigot-1.12.2.jar</systemPath>
+      <systemPath>${basedir}/lib/spigot-1.16.3.jar</systemPath>
     </dependency>
   </dependencies>
 </project>

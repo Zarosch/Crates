@@ -66,7 +66,7 @@ public class FileManager {
             this.getCratesBuilder().addDefault("crates.money.inventory-background", plugin.getVersion().getDefaultCrateLimeGlass());
 
             this.getCratesBuilder().addDefault("crates.food.name", "Food Key");
-            this.getCratesBuilder().addDefault("crates.food.type", "key");
+            this.getCratesBuilder().addDefault("crates.food.type", "crate");
             lore.clear();
             lore.add("§7Food! Anybody needs food.");
             this.getCratesBuilder().addDefault("crates.food.item", new ItemBuilder().setMaterial(Material.TRIPWIRE_HOOK).setShowEnchant(false).setDisplayName("§aFood Key").setLore(lore).addEnchantment(Enchantment.LUCK, 1, false).build());

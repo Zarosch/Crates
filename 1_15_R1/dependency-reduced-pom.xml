@@ -11,7 +11,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.16</version>
+      <version>1.18.16</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -19,7 +19,7 @@
       <artifactId>spigot</artifactId>
       <version>1_15_R1</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/spigot-1.15.1.jar</systemPath>
+      <systemPath>${basedir}/lib/spigot-1.15.2.jar</systemPath>
     </dependency>
   </dependencies>
 </project>
