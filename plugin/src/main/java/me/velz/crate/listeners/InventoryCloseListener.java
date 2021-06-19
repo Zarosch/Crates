@@ -37,6 +37,10 @@ public class InventoryCloseListener implements Listener {
                                 }
                             }
                         }
+                        if (stack.getType().equals(Material.PLAYER_HEAD) && stack.hasItemMeta() && ((SkullMeta) stack.getItemMeta()).getOwner() != null && !((SkullMeta) stack.getItemMeta()).getOwner().equalsIgnoreCase("")) {
+                            plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".item.meta.owningPlayer", ((SkullMeta) stack.getItemMeta()).getOwner());
+                            plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".items.item.meta.owningPlayer", ((SkullMeta) stack.getItemMeta()).getOwner());
+                        }
                         plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".chance", 1);
                         plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".item", stack);
                         plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".content." + name + ".items.item", stack);
