@@ -1,8 +1,16 @@
 package me.velz.crate.utils;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import me.velz.crate.Crates;
 import net.md_5.bungee.api.ChatColor;
 
@@ -14,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 public class ItemBuilder {
 
@@ -23,7 +32,7 @@ public class ItemBuilder {
     private short durability = 0;
     private Color color;
     private int amount = 1;
-    private String owner;
+    private String owner, texture, signatur;
     private final HashMap<Enchantment, Integer> safeEnchant = new HashMap<>();
     private final HashMap<Enchantment, Integer> unSafeEnchant = new HashMap<>();
     private boolean unbreakable = false, showenchant = true, showattributes = true;
@@ -120,6 +129,11 @@ public class ItemBuilder {
     }
     //</editor-fold>
 
+    public ItemBuilder setTextures(String texture) {
+        this.texture = texture;
+        return this;
+    }
+
     //<editor-fold defaultstate="collapsed" desc="setShowEnchant">
     public ItemBuilder setShowEnchant(boolean showenchant) {
         this.showenchant = showenchant;
@@ -185,10 +199,20 @@ public class ItemBuilder {
         if (unbreakable) {
             Crates.getPlugin().getVersion().setUnbreakable(is, true);
         }
-        if (owner != null) {
-            SkullMeta sm = (SkullMeta) is.getItemMeta();
-            sm.setOwner(owner);
-            is.setItemMeta(sm);
+        if (texture != null) {
+            try {
+                SkullMeta skullmeta = (SkullMeta) is.getItemMeta();
+                try {
+                    Method mtd = skullmeta.getClass().getDeclaredMethod("setProfile", GameProfile.class);
+                    mtd.setAccessible(true);
+                    mtd.invoke(skullmeta, getNonPlayerProfile(texture));
+                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+                is.setItemMeta(skullmeta);
+            } catch (SecurityException ex) {
+            } catch (IllegalArgumentException ex) {
+            }
         }
         if (color != null) {
             LeatherArmorMeta lam = (LeatherArmorMeta) is.getItemMeta();
@@ -198,5 +222,11 @@ public class ItemBuilder {
         return is;
     }
     //</editor-fold>
+
+    private GameProfile getNonPlayerProfile(String textures) {
+        GameProfile newSkinProfile = new GameProfile(UUID.randomUUID(), null);
+        newSkinProfile.getProperties().put("textures", new Property("textures", textures));
+        return newSkinProfile;
+    }
 
 }

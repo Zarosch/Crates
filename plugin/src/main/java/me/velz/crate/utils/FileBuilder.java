@@ -1,9 +1,14 @@
 package me.velz.crate.utils;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.Getter;
@@ -15,6 +20,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -108,12 +114,20 @@ public class FileBuilder {
                     }
                 } catch (ClassCastException ex) {
                 }
-                try {
-                    SkullMeta skullMeta = (SkullMeta) stack.getItemMeta();
-                    if (Crates.getPlugin().getVersion().getSkullOwner(skullMeta) != null) {
-                        this.configuration.set(path + ".meta.owningPlayer", Crates.getPlugin().getVersion().getSkullOwner(skullMeta));
+                if (stack.getItemMeta() instanceof SkullMeta) {
+                    try {
+                        SkullMeta skullMeta = (SkullMeta) stack.getItemMeta();
+                        Field profileField = skullMeta.getClass().getDeclaredField("profile");
+                        profileField.setAccessible(true);
+                        GameProfile profile = (GameProfile) profileField.get(skullMeta);
+                        Property property = profile.getProperties().get("textures").iterator().next();
+                        this.configuration.set(path + ".textures.texture", property.getValue());
+                        this.configuration.set(path + ".textures.signature", property.getSignature());
+                    } catch (NoSuchFieldException ex) {
+                    } catch (SecurityException ex) {
+                    } catch (IllegalArgumentException ex) {
+                    } catch (IllegalAccessException ex) {
                     }
-                } catch (ClassCastException ex) {
                 }
 
                 if (stack.getEnchantments() != null) {
@@ -198,7 +212,7 @@ public class FileBuilder {
             if (stack.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_ATTRIBUTES)) {
                 this.configuration.set(path + ".meta.showattributes", false);
             }
-            
+
             if (stack.getItemMeta() instanceof LeatherArmorMeta) {
                 LeatherArmorMeta armorMeta = (LeatherArmorMeta) stack.getItemMeta();
                 if (armorMeta.getColor() != null) {
@@ -207,9 +221,17 @@ public class FileBuilder {
             }
 
             if (stack.getItemMeta() instanceof SkullMeta) {
-                SkullMeta skullMeta = (SkullMeta) stack.getItemMeta();
-                if (Crates.getPlugin().getVersion().getSkullOwner(skullMeta) != null) {
-                    this.configuration.set(path + ".meta.owningPlayer", Crates.getPlugin().getVersion().getSkullOwner(skullMeta));
+                try {
+                    SkullMeta skullMeta = (SkullMeta) stack.getItemMeta();
+                    Field profileField = skullMeta.getClass().getDeclaredField("profile");
+                    profileField.setAccessible(true);
+                    GameProfile profile = (GameProfile) profileField.get(skullMeta);
+                    Property property = profile.getProperties().get("textures").iterator().next();
+                    this.configuration.set(path + ".textures.texture", property.getValue());
+                } catch (NoSuchFieldException ex) {
+                } catch (SecurityException ex) {
+                } catch (IllegalArgumentException ex) {
+                } catch (IllegalAccessException ex) {
                 }
             }
         }
@@ -300,6 +322,9 @@ public class FileBuilder {
         }
         if (this.configuration.contains(path + ".meta.armorColor")) {
             builder.setColor(this.configuration.getInt(path + ".meta.armorColor"));
+        }
+        if(this.configuration.contains(path + ".textures.texture")) {
+            builder.setTextures(this.getConfiguration().getString(path + ".textures.texture"));
         }
         if (this.configuration.contains(path + ".meta.owningPlayer")) {
             builder.setOwner(this.configuration.getString(path + ".meta.owningPlayer"));

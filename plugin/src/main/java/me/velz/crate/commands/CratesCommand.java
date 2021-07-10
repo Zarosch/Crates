@@ -1,11 +1,14 @@
 package me.velz.crate.commands;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import me.velz.crate.Crates;
+import me.velz.crate.objects.CrateChest;
 import me.velz.crate.utils.ItemBuilder;
 import me.velz.crate.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,6 +40,8 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage(MessageUtil.COMMAND_HELP_ADDITEM.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_ADDCRATEV2.getLocal());
             cs.sendMessage(MessageUtil.COMMAND_HELP_REMOVECRATE.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDOPENER.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_REMOVEOPENER.getLocal());
             cs.sendMessage("");
             return true;
         }
@@ -46,18 +51,60 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_RELOADED.getLocal());
             return true;
         }
-        
-        if(args[0].equalsIgnoreCase("addchest")) {
-            if (args.length <= 2) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addchest <chest>"));
-                return true;
+
+        if (args[0].equalsIgnoreCase("addopener")) {
+            try {
+                Player player = (Player) cs;
+                Block block = player.getTargetBlock(null, 5);
+                if (block.getLocation().distance(player.getLocation()) > 15) {
+                    cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_BLOCKNOTFOUND.getLocal());
+                    return true;
+                }
+                plugin.getOpeners().add(new CrateChest(block.getLocation()));
+                ArrayList<String> locations = plugin.getFileManager().getCratesBuilder().getStringListAsArrayList("opener.locations");
+                locations.add(block.getLocation().getWorld().getName() + ";" + block.getLocation().getX() + ";" + block.getLocation().getY() + ";" + block.getLocation().getZ());
+                plugin.getFileManager().getCratesBuilder().set("opener.locations", locations);
+                plugin.getFileManager().getCratesBuilder().save();
+                plugin.getFileManager().load();
+                player.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.COMMAND_ADDOPENER.getLocal());
+            } catch (NullPointerException ex) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_BLOCKNOTFOUND.getLocal());
             }
-            
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("removeopener")) {
+            try {
+                Player player = (Player) cs;
+                Block block = player.getTargetBlock(null, 5);
+                if (block.getLocation().distance(player.getLocation()) > 15) {
+                    cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_BLOCKNOTFOUND.getLocal());
+                    return true;
+                }
+                plugin.getOpeners().add(new CrateChest(block.getLocation()));
+                ArrayList<String> locations = plugin.getFileManager().getCratesBuilder().getStringListAsArrayList("opener.locations");
+                if (locations.contains(block.getLocation().getWorld().getName() + ";" + block.getLocation().getX() + ";" + block.getLocation().getY() + ";" + block.getLocation().getZ())) {
+                    locations.remove(block.getLocation().getWorld().getName() + ";" + block.getLocation().getX() + ";" + block.getLocation().getY() + ";" + block.getLocation().getZ());
+                    plugin.getFileManager().getCratesBuilder().set("opener.locations", locations);
+                    plugin.getFileManager().getCratesBuilder().save();
+                    plugin.getFileManager().load();
+                } else {
+                    player.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_NOTOPENHERE.getLocal());
+                    return true;
+                }
+            } catch (NullPointerException ex) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_BLOCKNOTFOUND.getLocal());
+            }
+            return true;
         }
 
         if (args[0].equalsIgnoreCase("addcrate")) {
-            if (args.length <= 2) {
-                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <crate> <itemname>"));
+            if (args.length <= 3) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <crate> <key|crate> <itemname>"));
+                return true;
+            }
+            if(!args[2].equalsIgnoreCase("key") && args[3].equalsIgnoreCase("crate")) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_SYNTAX.getLocal().replaceAll("%command", "/crate addcrate <crate> <key|crate> <itemname>"));
                 return true;
             }
             String crate = args[1];
@@ -67,12 +114,18 @@ public class CratesCommand implements CommandExecutor {
             }
 
             String displayname = "";
-            for (int i = 2; i != args.length; i++) {
+            for (int i = 3; i != args.length; i++) {
                 displayname = displayname + args[i] + " ";
             }
             displayname = displayname.substring(0, displayname.length() - 1);
 
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".name", crate + " Crate");
+            if(args[2].equalsIgnoreCase("key")) {
+                plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".type", "key");
+            }
+            if(args[2].equalsIgnoreCase("crate")) {
+                plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".type", "crate");
+            }
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".item", new ItemBuilder().setMaterial(Material.DRAGON_EGG).addEnchantment(Enchantment.LUCK, 1, false).setShowEnchant(false).setDisplayName(displayname).build());
             plugin.getFileManager().getCratesBuilder().save();
             plugin.getFileManager().load();

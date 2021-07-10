@@ -9,7 +9,6 @@ import me.velz.crate.objects.CrateOpening;
 import me.velz.crate.utils.ItemBuilder;
 import me.velz.crate.utils.MessageUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -47,15 +46,17 @@ public class PlayerInteractListener implements Listener {
                         open = true;
                     }
                     if (crate.getType().equalsIgnoreCase("key")) {
-                        if(event.getClickedBlock() != null) {
-                            for(CrateChest chest : plugin.getOpeners()) {
-                                if(chest.getLocations().contains(event.getClickedBlock().getLocation())) {
-                                    if(chest.getCrates().contains(crate.getName())) {
-                                        open = true;
-                                    }
+                        if (event.getClickedBlock() != null) {
+                            for (CrateChest chest : plugin.getOpeners()) {
+                                if (chest.getLocation().distance(event.getClickedBlock().getLocation()) < 1) {
+                                    open = true;
                                 }
                             }
                         }
+                    }
+                    if (crate.getType().equalsIgnoreCase("key") && !open) {
+                        player.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_NOTOPENHERE.getLocal());
+                        return;
                     }
                     if (open) {
                         if (plugin.inventoryContains(event.getPlayer().getInventory(), crate.getItem())) {
