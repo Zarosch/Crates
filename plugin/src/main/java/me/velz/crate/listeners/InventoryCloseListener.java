@@ -3,10 +3,12 @@ package me.velz.crate.listeners;
 import java.util.Random;
 import me.velz.crate.Crates;
 import me.velz.crate.utils.MessageUtil;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 public class InventoryCloseListener implements Listener {
 

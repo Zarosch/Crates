@@ -6,16 +6,16 @@
         <artifactId>Crate-modules</artifactId>
         <version>1.2</version>
     </parent>
-    <artifactId>Crate-1_13_R1</artifactId>
+    <artifactId>Crate-1_17_R1</artifactId>
     <packaging>jar</packaging>
     
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1_13_R1</version>
+            <version>1_16_R4</version>
             <scope>system</scope>
-            <systemPath>${basedir}/../lib/spigot-1.13.jar</systemPath>
+            <systemPath>${basedir}/../lib/spigot-1.17.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>me.velz</groupId>
@@ -24,5 +24,5 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    
+    <name>Crate-1_17_R1</name>
 </project>

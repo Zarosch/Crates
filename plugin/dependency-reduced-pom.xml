@@ -54,7 +54,7 @@
       <artifactId>spigot</artifactId>
       <version>1_14_R1</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/spigot-1.16.4.jar</systemPath>
+      <systemPath>${basedir}/../lib/spigot-1.17.jar</systemPath>
     </dependency>
   </dependencies>
 </project>

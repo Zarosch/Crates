@@ -15,7 +15,7 @@
             <artifactId>spigot</artifactId>
             <version>1_12_R1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.12.2.jar</systemPath>
+            <systemPath>${basedir}/../lib/spigot-1.12.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>me.velz</groupId>

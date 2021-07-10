@@ -19,7 +19,7 @@
       <artifactId>spigot</artifactId>
       <version>1_16_R3</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/spigot-1.16.3.jar</systemPath>
+      <systemPath>${basedir}/../lib/spigot-1.16.3.jar</systemPath>
     </dependency>
   </dependencies>
 </project>
