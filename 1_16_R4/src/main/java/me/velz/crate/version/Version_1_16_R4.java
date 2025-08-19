@@ -3,6 +3,7 @@ package me.velz.crate.version;
 import com.mojang.authlib.properties.Property;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -56,6 +57,11 @@ public class Version_1_16_R4 implements Version {
     @Override
     public String getPropertyValue(Property property) {
         return property.getValue();
+    }
+    
+    @Override
+    public ItemStack getMainHandItem(Player player) {
+        return player.getInventory().getItemInMainHand();
     }
 
 }

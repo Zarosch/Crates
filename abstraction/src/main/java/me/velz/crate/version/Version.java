@@ -5,6 +5,7 @@ import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import com.mojang.authlib.properties.Property;
+import org.bukkit.entity.Player;
 
 
 public interface Version {
@@ -24,5 +25,7 @@ public interface Version {
     public String getPropertySignature(Property property);
     
     public String getPropertyValue(Property property);
+    
+    public ItemStack getMainHandItem(Player player);
     
 }

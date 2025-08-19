@@ -23,7 +23,8 @@ public enum MessageUtil {
     COMMAND_HELP_GIVE("", "§6/crates give <Crate> [Player] §fGives you a crate", "§6/crates give <Crate> [Spieler] §fGebe dir ein Crate", "§6/crates give <crate> [jugador] §fDa una caja."),
     COMMAND_HELP_LIST("", "§6/crates list §fList of all crates.", "§6/crates list §fListe aller Crates", "§6/crates list §fLista de crates disponibles."),
     COMMAND_HELP_ADDITEM("", "§6/crates additem <Crate> §fAdd Item to crate content", "§6/crates additem <Crate> §fItem zum Crate Content hinzufügen.", "§6/crates additem <Crate> §fAñadir artículo al contenido de la caja"),
-    COMMAND_HELP_ADDCRATEV2("", "§6/crates addcrate <crate> <itemname> §fAdd a new crate", "§6/crates addcrate <crate> <itemname> §fCrate hinzufügen", "§6/crates addcrate <crate> <itemname> §fAñadir caja"),
+    COMMAND_HELP_SETMATERIAL("", "§6/crates setmaterial <Crate> §fSet the item of the mainhand as crate.", "§6/crates setmaterial <crate> §fSetze das Item deiner Haupthand als Crate.", "§6/crates setmaterial <Crate> §fEstablecer el objeto de la mano principal como caja."),
+    COMMAND_HELP_ADDCRATEV2("", "§6/crates addcrate <name> <crate/key> <itemname> §fAdd a new crate", "§6/crates addcrate <name> <crate/key> <itemname> §fCrate hinzufügen", "§6/crates addcrate <name> <crate/key> <itemname> §fAñadir caja"),
     COMMAND_HELP_REMOVECRATE("", "§6/crates removecrate <crate> §fRemove a crate", "§6/crates removecrate <crate> §fCrate entfernen", "§6/crates removecrate <crate> §fQuitar la caja"),
     COMMAND_HELP_ADDOPENER("", "§6/crates addopener §fAdd a opener block", "§6/crates addopener §fOpener Block hinzufügen", "§6/crates addopener §fAñadir bloque de apertura"),
     COMMAND_HELP_REMOVEOPENER("", "§6/crates removeopener §fRemove a opener block", "§6/crates addopener §fOpener Block entfernen", "§6/crates removeopener §fRetirar el bloque de apertura"),
@@ -37,7 +38,8 @@ public enum MessageUtil {
     COMMAND_ADDCRATE_NOITEMINHAND("", "§cYou have to hold an item for the crate in your hand.", "§cDu musst ein Item für das Crate in der Hand halten.", "§cTienes que sostener un objeto para el cajón en tu mano."),
     COMMAND_ADDCRATE_NODISPLAYNAME("", "§cThe crate item must have a unique name.", "§cDas Crate Item muss einen einzigartigen namen haben.", "§cEl elemento de caja debe tener un nombre único."),
     COMMAND_ADDCRATE_ADDED("", "§aYou have the crate §f§o%crate §aadded.", "§aDu hast das Crate §f§o%crate §ahinzugefügt.", "§aUsted tiene el cajón §f§o%crate §aañadido."),
-    COMMAND_REMOVECRATE("", "§eYou have the crate §f§o%crate §eremoved.", "§eDu hast das Crate §f§o%crate §eentfernt.", "§eHas eliminado la caja §f§o%crate§e crate.");
+    COMMAND_REMOVECRATE("", "§eYou have the crate §f§o%crate §eremoved.", "§eDu hast das Crate §f§o%crate §eentfernt.", "§eHas eliminado la caja §f§o%crate§e crate."),
+    COMMAND_SETMATERIAL("", "§6The crate item of §f§o%crate §6was set to §f§o%item §6.", "§6Das Item der Crate §f§o%crate §6wurde zu §f§o%item §6gesetzt.", "§6El elemento de la caja de §f§o%crate §6se estableció en §f§o%item §6.");
 
     @Getter
     private String local;
