@@ -62,13 +62,14 @@
         <module>1_16_R3</module>
         <module>1_16_R4</module>
         <module>1_17_R1</module>
+        <module>1_20_R1</module>
     </modules>
     
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>1.18.32</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

@@ -8,7 +8,7 @@
     </parent>
     <artifactId>Crate</artifactId>
     <packaging>jar</packaging>
-    <version>1.13</version>
+    <version>1.18</version>
     
     <repositories>
         <repository>
@@ -25,9 +25,8 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1_14_R1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/../lib/spigot-1.17.jar</systemPath>
+            <version>1.20.4-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>me.velz</groupId>
@@ -98,6 +97,12 @@
         <dependency>
             <groupId>me.velz</groupId>
             <artifactId>Crate-1_17_R1</artifactId>
+            <version>1.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.velz</groupId>
+            <artifactId>Crate-1_20_R1</artifactId>
             <version>1.2</version>
             <scope>compile</scope>
         </dependency>

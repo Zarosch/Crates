@@ -33,7 +33,7 @@ public class Crates extends JavaPlugin {
     private final ArrayList<CrateChest> openers = new ArrayList<>();
 
     @Getter
-    private final VersionMatcher versionMatcher = new VersionMatcher();
+    private VersionMatcher versionMatcher;
 
     @Getter
     private Version version;
@@ -41,6 +41,7 @@ public class Crates extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        versionMatcher = new VersionMatcher(this);
         version = versionMatcher.match();
         getCommand("crate").setExecutor(new CratesCommand(this));
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(this), this);

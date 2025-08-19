@@ -6,9 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.Getter;
@@ -20,7 +18,6 @@ import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -121,8 +118,8 @@ public class FileBuilder {
                         profileField.setAccessible(true);
                         GameProfile profile = (GameProfile) profileField.get(skullMeta);
                         Property property = profile.getProperties().get("textures").iterator().next();
-                        this.configuration.set(path + ".textures.texture", property.getValue());
-                        this.configuration.set(path + ".textures.signature", property.getSignature());
+                        this.configuration.set(path + ".textures.texture", Crates.getPlugin().getVersion().getPropertyValue(property));
+                        this.configuration.set(path + ".textures.signature", Crates.getPlugin().getVersion().getPropertySignature(property));
                     } catch (NoSuchFieldException ex) {
                     } catch (SecurityException ex) {
                     } catch (IllegalArgumentException ex) {
@@ -227,7 +224,7 @@ public class FileBuilder {
                     profileField.setAccessible(true);
                     GameProfile profile = (GameProfile) profileField.get(skullMeta);
                     Property property = profile.getProperties().get("textures").iterator().next();
-                    this.configuration.set(path + ".textures.texture", property.getValue());
+                    this.configuration.set(path + ".textures.texture", Crates.getPlugin().getVersion().getPropertyValue(property));
                 } catch (NoSuchFieldException ex) {
                 } catch (SecurityException ex) {
                 } catch (IllegalArgumentException ex) {

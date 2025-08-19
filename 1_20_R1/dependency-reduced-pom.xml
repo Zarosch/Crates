@@ -6,42 +6,8 @@
     <version>1.2</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>Crate</artifactId>
-  <version>1.18</version>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>3.1.0</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <relocations>
-            <relocation>
-              <pattern>org.bstats</pattern>
-              <shadedPattern>me.velz.crate</shadedPattern>
-            </relocation>
-          </relocations>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <repositories>
-    <repository>
-      <id>CodeMC</id>
-      <url>https://repo.codemc.org/repository/maven-public</url>
-    </repository>
-    <repository>
-      <id>inventive-repo</id>
-      <url>https://repo.inventivetalent.org/content/groups/public/</url>
-    </repository>
-  </repositories>
+  <artifactId>Crate-1_20_R1</artifactId>
+  <name>Crate-1_20_R1</name>
   <dependencies>
     <dependency>
       <groupId>org.spigotmc</groupId>

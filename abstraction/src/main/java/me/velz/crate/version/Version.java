@@ -4,6 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import com.mojang.authlib.properties.Property;
+
 
 public interface Version {
     
@@ -18,5 +20,9 @@ public interface Version {
     public Material getSkullItem();
     
     public ItemStack getDefaultCrateLimeGlass();
+    
+    public String getPropertySignature(Property property);
+    
+    public String getPropertyValue(Property property);
     
 }

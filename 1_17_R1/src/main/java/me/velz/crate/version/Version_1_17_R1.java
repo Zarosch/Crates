@@ -47,4 +47,14 @@ public class Version_1_17_R1 implements Version {
         return itemStack;
     }
 
+    @Override
+    public String getPropertySignature(Property property) {
+        return property.getSignature();
+    }
+
+    @Override
+    public String getPropertyValue(Property property) {
+        return property.getValue();
+    }
+
 }

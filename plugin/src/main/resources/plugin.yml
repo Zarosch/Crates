@@ -1,8 +1,8 @@
 name: Crates
 author: Zarosch
-version: 1.17
+version: 1.18
 main: me.velz.crate.Crates
-api-version: 1.15
+api-version: 1.17
 
 commands:
     crate:

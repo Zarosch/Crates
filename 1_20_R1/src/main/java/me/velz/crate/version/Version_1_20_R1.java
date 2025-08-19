@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-public class Version_1_16_R1 implements Version {
+public class Version_1_20_R1 implements Version {
 
     @Override
     public Sound getSound(String sound) {
@@ -27,10 +27,7 @@ public class Version_1_16_R1 implements Version {
 
     @Override
     public String getSkullOwner(SkullMeta skullMeta) {
-        if (skullMeta.getOwningPlayer() == null) {
-            return null;
-        }
-        return skullMeta.getOwningPlayer().getName();
+        return null;
     }
 
     @Override
@@ -47,15 +44,17 @@ public class Version_1_16_R1 implements Version {
 
         return itemStack;
     }
-    
+
     @Override
     public String getPropertySignature(Property property) {
-        return property.getSignature();
+        return property.signature();
     }
 
     @Override
     public String getPropertyValue(Property property) {
-        return property.getValue();
+        return property.value();
     }
+    
+    
 
 }

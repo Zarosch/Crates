@@ -1,5 +1,6 @@
 package me.velz.crate.version;
 
+import com.mojang.authlib.properties.Property;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
@@ -46,6 +47,16 @@ public class Version_1_12_R1 implements Version {
         itemStack.setItemMeta(itemMeta);
 
         return itemStack;
+    }
+    
+    @Override
+    public String getPropertySignature(Property property) {
+        return property.getSignature();
+    }
+
+    @Override
+    public String getPropertyValue(Property property) {
+        return property.getValue();
     }
 
 }
