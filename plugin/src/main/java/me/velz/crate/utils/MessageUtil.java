@@ -17,6 +17,7 @@ public enum MessageUtil {
     ERROR_PLAYERONLY("", "§cThis command is only for players.", "§cDieser Befehl ist nur für Spieler.", "§cEste comando es solo para jugadores."),
     ERROR_NOTOPENHERE("", "§cYou can't open this crate key here..", "§cDu kannst den Crate Schlüssel hier nicht verwenden..", "§cNo puedes abrir esta llave de caja aquí.."),
     ERROR_NOOPENERHERE("", "§cThat is not a opener.", "§cDas ist kein Opener.", "§cEsto no es un abridor."),
+    ERROR_NOITEMINHAND("", "§cYou have to hold a item in your main hand.", "§cDu musst ein Item in deiner Mainhand halten.", "Tienes que sostener un objeto en tu mano principal."),
     ERROR_BLOCKNOTFOUND("", "§cNo block could be found, please view a block.", "§cEs konnte kein Block gefunden werden, bitte schaue einen Block an.", "§cNo se ha podido encontrar ningún bloque, por favor, vea un bloque."),
     ITEMWON("", "§aYou have §f§o%win §awon.", "§aDu hast §f§o%win §agewonnen.", "§aHas ganado: §f§o%win"),
     COMMAND_HELP_RELOAD("", "§6/crates reload §fReload Configuration", "§6/crates reload §fKonfiguration neuladen", "§6/crates reload §fRecarga la configuración."),

@@ -161,6 +161,11 @@ public class CratesCommand implements CommandExecutor {
             }
             
             Player player = (Player)cs;
+            if(plugin.getVersion().getMainHandItem(player).getType() == Material.AIR) {
+                cs.sendMessage(MessageUtil.PREFIX.getLocal() + MessageUtil.ERROR_NOITEMINHAND.getLocal());
+                return true;
+            }
+            
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".item.material", plugin.getVersion().getMainHandItem(player).getType().toString());
             plugin.getFileManager().getCratesBuilder().save();
             plugin.getFileManager().load();
