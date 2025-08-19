@@ -34,13 +34,12 @@ public class VersionMatcher {
     );
     
     public Version match() {
-        System.out.println("VERSION: " + plugin.getServer().getVersion());
         try {
             this.serverVersion = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3].substring(1);
         } catch (Exception e) {
         }
         try {
-            int v = Integer.parseInt(serverVersion.split("_")[1]);
+            int v = Integer.parseInt(plugin.getServer().getVersion().split("\\.")[1]);
             if(v < 20) {
                 return versions.stream().filter(version -> version.getSimpleName().substring(8).equals(serverVersion))
                         .findFirst().orElse(Version_1_17_R1.class)

@@ -34,7 +34,6 @@ public class FileManager {
 
     public void setDefaults() {
         this.getConfigBuilder().addDefault("language", "en");
-        this.getConfigBuilder().addDefault("autoupdate", true);
         this.getConfigBuilder().addDefault("options.animation", true);
         this.getConfigBuilder().save();
         if (!getCratesBuilder().getConfiguration().contains("crates")) {
