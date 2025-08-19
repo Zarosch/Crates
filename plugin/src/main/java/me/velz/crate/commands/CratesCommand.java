@@ -46,6 +46,21 @@ public class CratesCommand implements CommandExecutor {
             cs.sendMessage("");
             return true;
         }
+        
+        if(args[0].equalsIgnoreCase("help")) {
+            cs.sendMessage("");
+            cs.sendMessage(MessageUtil.COMMAND_HELP_RELOAD.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_GIVE.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_LIST.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDITEM.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDCRATEV2.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_REMOVECRATE.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_ADDOPENER.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_REMOVEOPENER.getLocal());
+            cs.sendMessage(MessageUtil.COMMAND_HELP_SETMATERIAL.getLocal());
+            cs.sendMessage("");
+            return true;
+        }
 
         if (args[0].equalsIgnoreCase("reload")) {
             plugin.getFileManager().load();
