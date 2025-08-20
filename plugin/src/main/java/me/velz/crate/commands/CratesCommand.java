@@ -134,6 +134,9 @@ public class CratesCommand implements CommandExecutor {
                 displayname = displayname + args[i] + " ";
             }
             displayname = displayname.substring(0, displayname.length() - 1);
+            if(!displayname.startsWith("§")) {
+                displayname = "§e" + displayname;
+            }
 
             plugin.getFileManager().getCratesBuilder().set("crates." + crate + ".name", crate + " Crate");
             if(args[2].equalsIgnoreCase("key")) {
